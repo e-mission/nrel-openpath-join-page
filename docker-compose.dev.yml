@@ -13,6 +13,3 @@ services:
 networks:
   emission:
 
-volumes:
-  mongo-data:
-
