@@ -1,15 +1,14 @@
 version: "3"
 services:
   joinpage:
-    image: danjellz/http-server:latest
+    build:
+        context: frontend
+        dockerfile: docker/Dockerfile
     ports:
       # DASH in numbers
       - "3274:8080"
-    volumes:
-      - ./frontend:/public
     networks:
        - emission
 
 networks:
   emission:
-
