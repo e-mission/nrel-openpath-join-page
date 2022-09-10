@@ -1,9 +1,7 @@
 version: "3"
 services:
   joinpage:
-    build:
-        context: frontend
-        dockerfile: docker/Dockerfile
+    build: frontend
     ports:
       # DASH in numbers
       - "3274:8080"
