@@ -176,7 +176,7 @@
                      
                   </div>
                   
-                  <p><a href="nrelopenpath://join_study?label=open-access&amp;source=github">nrelopenpath://join_study?label=open-access&amp;source=github</a></p>
+                  <p><a id="join_study_link" href="should_be_the_join_link"></a></p>
                   
                   <p class="caption">You will log in using <a id="tokenType"></a> token. Save your token in case you lose or
                      change phones. If you lose your token, NREL cannot retrieve it for you since we do
@@ -432,6 +432,10 @@
             $('#tokenPrivacyInfo').text(tokenPrivacyInfoText);
             $('#programOrStudy').append(programOrStudy);
             $('#deploymentPartnerName').append(deploymentPartnerNameText);
+
+            const join_url = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
+            $('#join_study_link').text(join_url)
+            $('#join_study_link').attr('href', join_url)
           });
         });
       });
