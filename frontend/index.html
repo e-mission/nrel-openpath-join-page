@@ -113,7 +113,7 @@
         </div>
 
         <div class="col-md-6 col-xl-8 order-md-1">
-          <a href="/" class="app-name">NREL OpenPATH</a>
+          <a id="pageTitle" href="https://nrel.gov/openpath" class="app-name">NREL OpenPATH Join Page</a>
         </div>
 
       </div>
@@ -138,24 +138,17 @@
 
       <!-- Navigation -->
       <div class="navbar-collapse collapse" id="topnav-collapse">
-        <!--Navigation tabs are commented out for reference
         <ul class="nav navbar-nav">
-          <li data-topnav="link1" class="nav-item"><a href="#" class="nav-link">Link 1</a></li>
-          <li data-topnav="link2" class="nav-item"><a href="#" class="nav-link">Link 2</a></li>
-          <li class="dropdown nav-item" data-topnav="link3">	
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Link 3 <span class="fa fa-angle-down"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li class="nav-item"><a href="#" class="nav-link">Sub-Nav 1 <span class="fa fa-home"></span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Sub-Nav 2</a></li>
-            </ul>
-          </li>
-          <li data-topnav="link4" class="nav-item"><a href="#" class="nav-link">Link4</a></li>
+          <li id="publicDashboardLink" data-topnav="Public Dashboard" class="nav-item"><a href="should_be_the_public_dashboard_link" class="nav-link">Public Dashboard</a></li>
+          <li id="participantGuidelinesLink" data-topnav="Participant Guidelines" class="nav-item"><a href="should_be_the_participant_guidelines_link" class="nav-link">Participant Guidelines</a></li>
+          <li id="TSDCLink" data-topnav="TSDC" class="nav-item"><a href="should_be_the_tsdc_link" class="nav-link">TSDC</a></li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
+          <!--Navigation tabs are commented out for reference
           <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
+          -->
         </ul>
-        -->
         <!-- desktop search button -->
         <button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-none d-md-inline" data-toggle="collapse" data-target="#searchbar-collapse" aria-expanded="false" aria-label="Toggle Search">
           <span class="fa fa-search" aria-hidden="true"></span>
@@ -208,7 +201,7 @@
          <div class="row">
             <div class="col-lg-9">
                <h1 id="studyTitle"></h1>
-               <p class="lead">Thank you for participating in the NREL Open-Access Study.</p>
+               <p class="lead">Thank you for participating in the <a id="studyTitle"></a>.</p>
                
                <h2>Purpose of Study</h2>
 
@@ -225,8 +218,8 @@
 
                <div class="row justify-content-center">
                      
-                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="/client/img/OpenPATH-dashboard-preview.png" alt="OpenPATH dashboard preview"></div>
-                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="/client/img/public-dashboard-preview.png" alt="Public dashboard preview"></div>
+                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="client/img/OpenPATH-dashboard-preview.png" alt="OpenPATH dashboard preview"></div>
+                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="client/img/public-dashboard-preview.png" alt="Public dashboard preview"></div>
 
                </div>
                <p id="whyWeCollect"></p>
@@ -265,7 +258,7 @@
                      
                   </div>
                   
-                  <p><a id="join_study_link" href="should_be_the_join_link"></a></p>
+                  <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
                   
                   <p class="caption">You will log in using <a id="tokenType"></a> token. Save your token in case you lose or
                      change phones. If you lose your token, NREL cannot retrieve it for you since we do
@@ -451,7 +444,7 @@
 			$(function() {
 				$(document).ready(function() {
 					const STUDY_NAME = _getStudyName(window.location);
-          const JOIN_CODE = "nrelopenpath://join_study?label=" + STUDY_NAME + "&source=github";
+          const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
 
           // Generate study-join QR code
           var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -462,33 +455,62 @@
 	          colorLight : "#ffffff",
 	          correctLevel : QRCode.CorrectLevel.H
           });
-          $.getJSON('https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/' + STUDY_NAME + '.nrel-op.json', function(data) {
-            const programOrStudy = `${data.intro.program_or_study}`;
-            const deploymentPartnerNameText = `${data.intro.deployment_partner_name}`;
-            const studyTitleText = deploymentPartnerNameText + ` ${data.intro.translated_text.en.deployment_name}`;
-            const shortTextualDescriptionText = `${data.intro.translated_text.en.short_textual_description}`;
-            const whyWeCollectText = `${data.intro.translated_text.en.why_we_collect}`;
-            const tokenPrivacyInfoStudyText = "You will log in using a token generated by the phone app. Only you know your token. Since we don’t collect email or phone number, there is no “Forgot password” functionality. NREL staff cannot identify your account or restore your data without your token. You should save this token in case you change phones.";
-            const tokenPrivacyInfoProgramText = "You have been provided with a token by " + `${deploymentPartnerNameText}` + " to log in to the app. Please save this token in a safe place in case you need to reset your phone or change phones. If you have lost your token, please contact your admin at " + `${deploymentPartnerNameText}` + " for assistance.";;
+          $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`, function(data) {
+            
+            // Title card
+            const PAGE_TITLE_TEXT = `${data.intro.translated_text.en.deployment_name} Join Page`
+            $('#pageTitle').text(PAGE_TITLE_TEXT)
+            document.title = PAGE_TITLE_TEXT;
+            const PROJECT_LINK = data.server.connectUrl.replace("api", "join");
+            $('#pageTitle').attr('href', PROJECT_LINK);
+            
+            // Navigation links
+            const PUBLIC_DASHBOARD_LINK = `https://dashboard.${STUDY_NAME}.org/`;
+            $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
+            const PARTICIPANT_GUIDELINES_LINK = `https://www.nrel.gov/transportation/openpath-participant-guidelines.html`;
+            $('#participantGuidelinesLink').attr('href', PARTICIPANT_GUIDELINES_LINK);
+            const TSDC_LINK = `https://www.nrel.gov/transportation/secure-transportation-data/index.html`;
+            $('#TSDCLink').attr('href', TSDC_LINK);
 
-            // If it's a study, go with the study text. Else go with the program text
-            const tokenPrivacyInfoText = programOrStudy == 'study'? tokenPrivacyInfoStudyText : tokenPrivacyInfoProgramText;
-
-            if(programOrStudy == 'study') {
-              $('#tokenType').append("an autogenerated ");
-            } else if(programOrStudy == 'program') {
-              $('#tokenType').append("a program-provided ");
+            // Deployment partner content text
+            const DEPLOYMENT_PARTNER_NAME = `${data.intro.deployment_partner_name}`;
+            $('#deploymentPartnerName').text(DEPLOYMENT_PARTNER_NAME);
+            
+            // Study title content text
+            const STUDY_TITLE_TEXT = DEPLOYMENT_PARTNER_NAME + ` ${data.intro.translated_text.en.deployment_name}`;
+            $('#studyTitle').text(STUDY_TITLE_TEXT);
+            
+            // Short textual description content text
+            const SHORT_TEXTUAL_DESCRIPTION_TEXT = `${data.intro.translated_text.en.short_textual_description}`;
+            $('#shortTextualDescription').text(SHORT_TEXTUAL_DESCRIPTION_TEXT);
+            
+            // Why we collect content text
+            const WHY_WE_COLLECT_TEXT = `${data.intro.translated_text.en.why_we_collect}`;
+            $('#whyWeCollect').text(WHY_WE_COLLECT_TEXT);
+            
+            // Join study text
+            // JOIN_CODE was already defined above
+            $('#joinStudyLink').text(JOIN_CODE)
+            $('#joinStudyLink').attr('href', JOIN_CODE)
+            
+            // Program or study specific differences
+            const PROGRAM_OR_STUDY = `${data.intro.program_or_study}`;
+            if(PROGRAM_OR_STUDY == 'study') {
+              $('#tokenType').text("an autogenerated ");
+            } else if(PROGRAM_OR_STUDY == 'program') {
+              $('#tokenType').text("a program-provided ");
             }
-            $('#studyTitle').text(studyTitleText);
-            $('#shortTextualDescription').text(shortTextualDescriptionText);
-            $('#whyWeCollect').text(whyWeCollectText);
-            $('#tokenPrivacyInfo').text(tokenPrivacyInfoText);
-            $('#programOrStudy').append(programOrStudy);
-            $('#deploymentPartnerName').append(deploymentPartnerNameText);
+            $('#programOrStudy').text(PROGRAM_OR_STUDY);
 
-            const join_url = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
-            $('#join_study_link').text(join_url)
-            $('#join_study_link').attr('href', join_url)
+            // Token privacy content text
+            const TOKEN_PRIVACY_INFO_STUDY_TEXT = "You will log in using a token generated by the phone app. Only you know your token. Since we don’t collect email or phone number, there is no “Forgot password” functionality. NREL staff cannot identify your account or restore your data without your token. You should save this token in case you change phones.";
+            const TOKEN_PRIVACY_INFO_PROGRAM_TEXT = "You have been provided with a token by " + `${DEPLOYMENT_PARTNER_NAME}` + " to log in to the app. Please save this token in a safe place in case you need to reset your phone or change phones. If you have lost your token, please contact your admin at " + `${DEPLOYMENT_PARTNER_NAME}` + " for assistance.";
+              // If it's a study, go with the study text. Else go with the program text
+            const TOKEN_PRIVACY_INFO_TEXT = PROGRAM_OR_STUDY == 'study'? TOKEN_PRIVACY_INFO_STUDY_TEXT : TOKEN_PRIVACY_INFO_PROGRAM_TEXT;
+            $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
+
+            
+            
           });
         });
       });
