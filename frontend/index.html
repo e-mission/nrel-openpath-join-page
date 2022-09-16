@@ -200,8 +200,8 @@
 		<div class="container" id="content" role="main">
          <div class="row">
             <div class="col-lg-9">
-               <h1 id="studyTitle"></h1>
-               <p class="lead">Thank you for participating in the <a id="studyTitleProgram"></a>.</p>
+               <h1 id="studyTitleOne"></h1>
+               <p class="lead">Thank you for participating in the <a id="studyTitleTwoProgram"></a>.</p>
                
                <h2>Purpose of Study</h2>
 
@@ -481,11 +481,8 @@
 
             // Study title content text
             const STUDY_TITLE_TEXT = DEPLOYMENT_PARTNER_NAME + ` ${data.intro.translated_text.en.deployment_name}`;
-            $('#studyTitle').text(STUDY_TITLE_TEXT);
-            
-            // Study title + program/study text
-            const STUDY_TITLE_PROGRAM_TEXT = STUDY_TITLE_TEXT + ' ' + PROGRAM_OR_STUDY;
-            $('#studyTitleProgram').text(STUDY_TITLE_PROGRAM_TEXT);
+            $('#studyTitleOne').text(STUDY_TITLE_TEXT);
+            $('#studyTitleTwo').text(STUDY_TITLE_TEXT);
 
             // Short textual description content text
             const SHORT_TEXTUAL_DESCRIPTION_TEXT = `${data.intro.translated_text.en.short_textual_description}`;
