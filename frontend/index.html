@@ -289,15 +289,7 @@
                
                <p>Examples of research that might use the data include:</p>
                
-               <ul>
-                  
-                  <li>Comparing the open-access group (no intervention) and programs that provide interventions</li>
-                  
-                  <li>General monitoring of mobility trends for travel behavior, including shifts to travel
-                     behavior and the introduction of new mobility modes.
-                  </li>
-                  
-               </ul>
+               <div id="researchQuestions"></div>
                
                <h2>Contact</h2>
                
@@ -486,8 +478,15 @@
             const TOKEN_PRIVACY_INFO_TEXT = PROGRAM_OR_STUDY == 'study'? TOKEN_PRIVACY_INFO_STUDY_TEXT : TOKEN_PRIVACY_INFO_PROGRAM_TEXT;
             $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
 
-            
-            
+            // Research questions generation
+            $('#researchQuestions').append("<ul id='cList'></ul>");
+            for (i = 0; i < 3; i++) { // 3 research questions maximum
+              var RESEARCH_QUESTION_TEXT = `${data.intro.translated_text.en.research_questions[i]}`;
+              if(RESEARCH_QUESTION_TEXT == "undefined") { // Skip the entry if is not defined.
+                continue;
+              }
+              $("#cList").append("<li>" + RESEARCH_QUESTION_TEXT + "</li>");
+            }
           });
         });
       });
