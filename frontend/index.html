@@ -487,7 +487,6 @@
             $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
 
             // Research questions generation
-            var researchQuestionsList = RESEARCH_QUESTIONS_TEXT.split('.');
             $('#researchQuestions').append("<ul id='cList'></ul>");
             for (i = 0; i < 3; i++) { // 3 research questions maximum
               var RESEARCH_QUESTION_TEXT = `${data.intro.translated_text.en.research_questions[i]}`;
