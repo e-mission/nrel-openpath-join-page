@@ -487,14 +487,14 @@
             $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
 
             // Research questions generation
-            const RESEARCH_QUESTIONS_TEXT = `${data.intro.translated_text.en.research_questions}`;
             var researchQuestionsList = RESEARCH_QUESTIONS_TEXT.split('.');
             $('#researchQuestions').append("<ul id='cList'></ul>");
-            for (i = 0; i < researchQuestionsList.length; i++) {
-              if(researchQuestionsList[i] == "") { // Skip the last empty entry if the string ends with a "."
+            for (i = 0; i < 3; i++) { // 3 research questions maximum
+              var RESEARCH_QUESTION_TEXT = `${data.intro.translated_text.en.research_questions[i]}`;
+              if(RESEARCH_QUESTION_TEXT == "undefined") { // Skip the last empty entry if the string ends with a "."
                 continue;
               }
-              $("#cList").append("<li>" + researchQuestionsList[i] + "." + "</li>");
+              $("#cList").append("<li>" + RESEARCH_QUESTION_TEXT + "." + "</li>");
             }
           });
         });
