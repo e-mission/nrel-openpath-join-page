@@ -4,7 +4,7 @@ services:
     build: frontend
     ports:
       # DASH in numbers
-      - "3274:8080"
+      - "3274:5050"
     networks:
        - emission
 
