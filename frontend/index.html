@@ -437,7 +437,7 @@
             document.title = PAGE_TITLE_TEXT;
             
             // Navigation links
-            const PUBLIC_DASHBOARD_LINK = `https://${STUDY_NAME}-openpath.nrel.gov/public`;
+            const PUBLIC_DASHBOARD_LINK = data.server.connectUrl.replace("api", "public");;
             $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
 
             // Deployment partner content text
