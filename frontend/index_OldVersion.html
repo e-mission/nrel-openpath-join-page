@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>NSF CIVIC - UPRM</title>
+		<title>NREL CanBikeCO Dashboard</title>
 
 		<!-- == APPLICATION HEAD == -->
 		<!-- Google Tag Manager -->
@@ -58,7 +58,7 @@
 
     <!-- Site application banner -->
     <!--stopindex-->
-    <a href="" class="sr-only app">Skip to main content</a>
+    <a href="#content" class="sr-only app">Skip to main content</a>
 
     <header id="banner">
     <div class="banner-logo">
@@ -106,7 +106,7 @@
         </div>
 
         <div class="col-md-6 col-xl-8 order-md-1">
-          <a class="app-name">NSF CIVIC OpenPATH</a>
+          <a id="pageTitle" class="app-name">NREL OpenPATH Join Page</a>
         </div>
 
       </div>
@@ -133,7 +133,7 @@
       <div class="navbar-collapse collapse" id="topnav-collapse">
         <ul class="nav navbar-nav">
           <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" class="nav-link">Public Dashboard</a></li>
-          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" class="nav-link">Instrucciones para los participantes</a></li>
+          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" class="nav-link">Participant Guidelines</a></li>
           <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html" class="nav-link">TSDC</a></li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
@@ -146,12 +146,11 @@
         <button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-none d-md-inline" data-toggle="collapse" data-target="#searchbar-collapse" aria-expanded="false" aria-label="Toggle Search">
           <span class="fa fa-search" aria-hidden="true"></span>
         </button>
-        <!-- desktop translate button 
+        <!-- desktop translate button -->
         <button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-none d-md-inline" data-target="#searchbar-collapse" aria-expanded="false" aria-label="Toggle Search">
           <span class="fa fa-language" aria-hidden="true"></span>
         </button>
       </div>
-      -->
 
     </nav>
     </div><!--container-->
@@ -198,158 +197,110 @@
 		<div class="container" id="content" role="main">
          <div class="row">
             <div class="col-lg-9">
-               <h1>Estudio de Patrones de Viajes - NSF CIVIC - UPRM</h1>
-               <p class="lead"></p>
-               <br>
-               <h2>Introducción y Propósito</h2>
-               <br>
+               <h1 id="studyTitleOne"></h1>
+               <p class="lead">Thank you for participating in the <a id="studyTitleTwo"></a>.</p>
+               
+               <h2>Purpose of Study</h2>
 
-               <p align="justify"> OpenPATH es una plataforma de código abierto del “National Renewable Energy Laboratory” (NREL). 
-                La aplicación para teléfonos inteligentes, NREL OpenPATH ("Aplicación"), combina datos de sensores de 
-                teléfonos inteligentes, etiquetas semánticas de usuario y una breve encuesta demográfica.
-                </p>
-                <p align="justify">
-                NREL es un laboratorio nacional del Departamento de Energía de EE. UU., Oficina de Eficiencia Energética y Energía Renovable, 
-                operado por Alliance for Sustainable Energy, LLC bajo el contrato principal No. DE-AC36-08GO28308. Esta política de privacidad 
-                se aplica a la aplicación proporcionada por Alliance for Sustainable Energy, LLC. Esta aplicación se proporciona únicamente con 
-                el fin de recopilar datos de comportamiento de viaje para el estudio “Co-Design of Integrated Energy and Mobility Hubs” de la 
-                Universidad de Puerto Rico en Mayagüez y para investigaciones autorizadas por NREL. </p>
+               <p id="shortTextualDescription"></p>
+               
+               <h2>Data Collection</h2>
+               
+               <p>We will use the <a href="https://www.nrel.gov/transportation/openpath.html">NREL OpenPATH</a> platform 
+                  for this data collection. This open-source platform collects a complete snapshot 
+                  of your travel and uses it to estimate yourindividual transportation carbon 
+                  footprint and compare it against US 2030 and 2050 goals. It also computes and 
+                  publishes aggregate metrics around mode share and distance traveled.  
+               </p>
 
-                <p align="justify"> <i> Ninguno de los datos recogidos por la aplicación se venderá ni se utilizará con 
-                        fines comerciales, incluidos publicidad.</i></p>
-                <p align="justify"> <b> SI NO ESTÁ DE ACUERDO CON LOS TÉRMINOS DE ESTA POLÍTICA DE PRIVACIDAD, POR FAVOR NO BAJE LA APLICACIÓN.</b></p>
+               <div class="row justify-content-center">
+                     
+                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="client/img/OpenPATH-dashboard-preview.png" alt="OpenPATH dashboard preview"></div>
+                 <div class="col-md-6 mb-4"><img class="img-responsive img-fluid" src="client/img/public-dashboard-preview.png" alt="Public dashboard preview"></div>
+
+               </div>
+               <p id="whyWeCollect"></p>
+               
+               <h2>Install the NREL OpenPATH App on Your Phone</h2>
+               
+               <ol>
                   
-                <br>
-
-                <h2>Instale la Aplicación NREL OpenPATH en su Teléfono</h2>
-                
-                <br>
-                <ol>
-                   
-                   <li>Descargue la aplicación OpenPATH del NREL desde la <a href="https://apps.apple.com/us/app/nrel-openpath/id1628058068">Apple Store</a> o en la <a href="https://play.google.com/store/apps/details?id=gov.nrel.cims.openpath">Google Play Store</a>.
-                   </li>
-                   
-                   <li>Escanee el código QR o visite el enlace debajo del código para unirse al programa.</li>
-                   
-                   <li>Recuerde dar todos los permisos solicitados, incluyendo ("siempre") el acceso a la localización en segundo plano. Si tienes un teléfono Samsung o Huawei, desactiva las restricciones de ejecución de aplicaciones en segundo plano.
-                   </li>
-                   
-                   <li>Registra tus viajes, etiquétalos cuando se te indique y comprueba tu huella de carbono.</li>
-                   
-                </ol>
-                
-                <p>Para más información, consulte las <a href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html">instrucciones </a>para los participantes.
-                </p>
-                
-                <div class="well text-center">
-                   
-                   <h2>Únete al Proyecto</h2>
-                   
-                   <p>Una vez que ha instalado la aplicación NREL OpenPATH en su teléfono, únase al proyecto escaneando el código QR o 
-                    visitando el siguiente enlace con su teléfono.
-                   </p>
-                   
-                   <div class="row justify-content-center">
-                      
-                     <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-                      
-                   </div>
-                   
-                   <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
-                   
-                   <p class="caption">Se conectará utilizando un "token" proporcionado por la aplicación. Guarde su token en caso de que 
-                    pierda o cambie de teléfono. Si pierdes tu token, NREL no puede recuperarlo por ti ya que no tenemos la capacidad 
-                    de relacionar un token con un usuario individual.
-                   </p>
-                   
-                </div>
-
-                <br>
-
-                <h2>¿Por qué recopilamos esta información?</h2>
-               <br>
-               <p align="justify">Recopilamos información de viajes de personas en su región para poder identificar patrones en la 
-                distribución geográfica de los viajes y patrones en las horas de viaje. Esto permitirá al equipo de investigación identificar 
-                nuevas alternativas de transportación para las personas de su región.
-               </p>
-
-               <br>
-
-               <h2>¿Qué información recopilamos?</h2>
-               <br>
-               <p align="justify">La aplicación OpenPATH nunca solicitará información de identificación personal (PII) como nombre, dirección de correo electrónico o número de teléfono.
-                </p>
-                <p align="justify"> Recopila datos del sensor del teléfono relacionados con su ubicación, acelerómetro, reconocimiento de modo transporte, el tiempo de uso de la aplicación y el uso de la batería. 
-                La aplicación creará un "diario de viaje" basado en sus datos de ubicación de fondo para determinar sus patrones de viaje y ubicación histórica. </p>
-                <p align="justify"> Si desea, puede etiquetar sus viajes con información sobre el modo de viaje y el propósito del viaje. </p>
-                <p align="justify"> También, al ingresar por primera vez en la aplicación, se le solicitará información sociodemográfica como su edad aproximada, género y tipo de hogar. Los factores sociodemográficos se pueden utilizar en análisis que intentan generalizar los resultados del estudio a una población más amplia.
-                
-               </p>
-               <br>
-
-               <h2>¿Cómo se asocia la información recolectada contigo?</h2>
-               <br>
+                  <li>Download the NREL OpenPATH app from the <a href="https://apps.apple.com/us/app/nrel-openpath/id1628058068">Apple Store</a> or the <a href="https://play.google.com/store/apps/details?id=gov.nrel.cims.openpath">Google Play Store</a>.
+                  </li>
+                  
+                  <li>Scan the QR code or visit the link below to join this program.</li>
+                  
+                  <li>Remember to give all the requested permissions, including ("always") background location
+                     access. If you have a Samsung or Huawei phone, turn off background restrictions.
+                  </li>
+                  
+                  <li>Track your trips, label them when prompted, and check out your carbon footprint.</li>
+                  
+               </ol>
                
-               <p align="justify">La información recolectada está asociada con un “token” (como una contraseña) aleatorio generado por la aplicación cuando continúe con la configuración de OpenPATH. Solo usted conoce el token que conecta la información de viaje recolectada con su identidad. Ni NREL ni los investigadores de la 
-                Universidad de Puerto Rico en Mayagüez conocen el token que la aplicación generó para usted. Sugerimos que guarde el token por si desea tener acceso a su información si cambia de teléfono o si desea en un futuro que NREL borre toda información de sus viajes. Más información sobre la solicitud para borrar información 
-                en la sección “Tus derechos”.
+               <p>For additional information, see the <a href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html">participant guidelines</a>.
                </p>
-
-               <br>
-
-               <h2>¿Quién puede ver la información?</h2>
-               <br>
                
-               <p align="justify">Las métricas agregadas derivadas de los patrones de viaje estarán disponibles en un tablero público para proporcionar transparencia sobre el impacto del programa. Estas métricas se centrarán en resúmenes de información, como recuentos, distancias y duraciones, y no mostrarán ubicaciones u horas de viaje individuales. 
-               </p>
-
-               <p align="justify">Los patrones de viaje detallados en tiempo real solo estarán disponibles para los administradores del proyecto “Co-Design of Integrated Energy and Mobility Hubs” de la Universidad de Puerto Rico en Mayagüez y para el personal de NREL encargado de la programación de OpenPATH para propósitos de control de calidad (“debugging”).</p>
-
-               <p align="justify">Los datos también se archivarán periódicamente en el Transportation Secure Data Center (TSDC) de NREL después de un retraso de 3 a 6 meses. Entonces se hará disponible para investigación legítima a través del TSDC usando procedimientos de operación que preserven la privacidad de los participantes. Más información sobre los 
-                procedimientos está disponible en esta <a href="https://www.nrel.gov/transportation/secure-transportation-data/">Página Web</a>, en la publicación 
-                <a href="https://www.sciencedirect.com/science/article/pii/S2352146515002999">Archiving Data from New Survey Technologies: Enabling Research with High-precision Data While Preserving Participant Privacy</a>
-                y en esta 
-                <a href="https://www.nrel.gov/docs/fy19osti/73086.pdf">Hoja Informativa</a>.</p>
-               <br>
-
-               <h2>Tus derechos</h2>
-               <br>
+               <div class="well text-center">
+                  
+                  <h2>Join the Study</h2>
+                  
+                  <p>After you have installed the NREL OpenPATH app on your phone, join the study by scanning
+                     the QR code or visiting the link below using your phone.
+                  </p>
+                  
+                  <div class="row justify-content-center">
+                     
+                    <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                     
+                  </div>
+                  
+                  <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
+                  
+                  <p class="caption">You will log in using <a id="tokenType"></a> token. Save your token in case you lose or
+                     change phones. If you lose your token, NREL cannot retrieve it for you since we do
+                     not have the ability to match a token to an individual user.
+                  </p>
+                  
+               </div>
                
-               <p align="justify">La participación en el Estudio es completamente voluntaria. Tiene derecho a negarse a participar o retirarse en cualquier momento del estudio sin proporcionar notificación a NREL o los investigadores de la Universidad de Puerto Rico en Mayagüez. Si no desea 	participar en el Estudio o quiere 
-                interrumpir su participación en el Estudio, por favor, elimine la aplicación.  
-               </p>
-
-               <p align="justify">Si desea que se destruyan sus datos, comuníquese con K. Shankari de NREL (<a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a>)  solicitando la eliminación. Debe incluir su token en la solicitud de eliminación de datos porque NREL 
-                no conoce cuál es su token, y sin el token no se puede identificar cuáles son sus datos en el sistema. Una vez se reciba la solicitud de eliminación de datos, NREL destruye todos los datos asociados al token provisto, tanto datos que se encuentran en línea como los datos archivados. 
-               </p>
-
-               <br>
-
-               <h2>Preguntas</h2>
-               <br>
+               <h2>Data Privacy and Security</h2>
                
-               <p align="justify">Si tiene alguna pregunta sobre los objetivos y resultados de la recopilación de datos, por favor comuníquese con Daniel Rodríguez Román (<a href="mailto:daniel.rodriguez6@upr.edu"><span class="fa fa-envelope" aria-hidden="true"></span>daniel.rodriguez6@upr.edu</a>) o 
-                con K. Shankari de NREL (<a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a>). 
-                Si tiene alguna pregunta técnica sobre el funcionamiento de la aplicación, comuníquese con K. Shankari de NREL.  
+               <p>The system <strong>will not</strong> collect any of the traditional personally identifiable information (i.e., no name,
+                  email, or phone number).
                </p>
 
-               <br>
+               <p id="tokenPrivacyInfo"></p>
                
-               <h2>Contactos</h2>
-               <br>
-               <div class="bio">
-                <p class="header">K. Shankari</p>
-                <p class="header-description">Postdoctoral Researcher, Director's Fellow</p>
-                <a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a>
-              </div>
-
-              <br>
+               <p>The collected data will be stored in a FEDRAMP-certified medium cluster at NREL and
+                  encrypted both in transit and at rest. Data from this study will be stored separately
+                  from other study data using the NREL-hosted version of the OpenPATH platform.
+               </p>
+               
+               <p>The raw data from this study will only be made available to:</p>
+               
+               <ul>
+                  
+                  <li>Program administrators from <a id="deploymentPartnerName"></a> to monitor
+                     the <a id="programOrStudy"></a> and potentially send recommendations for alternate travel modes
+                  </li>
+                  
+                  <li>NREL OpenPATH developers for debugging.</li>
+                  
+               </ul>
+               
+               <p>On completion of the study, the data will be archived in NREL's <a href="https://www.nrel.gov/transportation/secure-transportation-data/index.html">Transportation Secure Data Center</a> to support travel behavior research.
+               </p>
+               
+               <p>Examples of research that might use the data include:</p>
+               
+               <div id="researchQuestions"></div>
+               
+               <h2>Contact</h2>
                
                <div class="bio">
-                  <p class="header">Daniel Rodríguez Román</p>
-                  <p class="header-description">PhD Transportation System Engineering</p>
-                  <a href="daniel.rodriguez6@upr.edu"><span class="fa fa-envelope" aria-hidden="true"></span>daniel.rodriguez6@upr.edu</a>
-                </div>
+                  <p class="header">K. Shankari</p>
+                  <p class="header-description">Postdoctoral Researcher, Director's Fellow</p><a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a><br><a href="tel:+1-303-384-6450"><span class="fa fa-phone-square" aria-hidden="true"></span>303-384-6450</a></div>
                
             </div>
 				</nav>
@@ -472,8 +423,6 @@
 			$(function() {
 				$(document).ready(function() {
 					const STUDY_NAME = _getStudyName(window.location);
-          // const STUDY_NAME: "stage-program";
-
           const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
 
           // Generate study-join QR code
@@ -490,7 +439,7 @@
             // Title card
             const PAGE_TITLE_TEXT = `${data.intro.translated_text.en.deployment_name} Join Page`
             $('#pageTitle').text(PAGE_TITLE_TEXT)
-            //document.title = PAGE_TITLE_TEXT;
+            document.title = PAGE_TITLE_TEXT;
             
             // Navigation links
             const PUBLIC_DASHBOARD_LINK = data.server.connectUrl.replace("api", "public");;
