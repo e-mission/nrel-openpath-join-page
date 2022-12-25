@@ -481,7 +481,7 @@
 	          colorLight : "#ffffff",
 	          correctLevel : QRCode.CorrectLevel.H
           });
-          $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/uprm-civic.nrel-op.json`, function(data) {
+          $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`, function(data) {
             
             // Title card
             const PAGE_TITLE_TEXT = `${data.intro.translated_text.en.deployment_name} Join Page`
