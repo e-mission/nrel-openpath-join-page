@@ -192,7 +192,8 @@
             <a href="#" onclick="">Español</a>
             <script >
               function getEnglishPage(){
-                window.location.href = "index.html";
+                const STUDY_NAME_HREF = _getStudyName(window.location);
+                window.location.href = `/?study_config=${STUDY_NAME_HREF}`;
               }
             </script>
           </div>
@@ -268,7 +269,7 @@
 
                </div>
                
-               <p id="whyWeCollect"></p> <!--This was removed do to lack of translated token at .json file. This is something that we will have to discuss with Shankari.-->
+               <p id="whyWeCollect"></p>
                
                <h2>Instalar la aplicación NREL OpenPATH en su teléfono</h2>
                
@@ -497,7 +498,7 @@
             $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
 
             // Deployment partner content text
-            const DEPLOYMENT_PARTNER_NAME = `${data.intro.deployment_partner_name}`;
+            const DEPLOYMENT_PARTNER_NAME = `${data.intro.translated_text.es.deployment_partner_name}`;
             $('#deploymentPartnerName').text(DEPLOYMENT_PARTNER_NAME);
             
             // Program or study specific differences

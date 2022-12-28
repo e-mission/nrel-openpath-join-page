@@ -191,7 +191,8 @@
             <a href="#" onclick="getSpanishPage()">Español</a>
             <script >
               function getSpanishPage(){
-                window.location.href = "index_es.html";
+                const STUDY_NAME_HREF = _getStudyName(window.location);
+                window.location.href = `index_es.html?study_config=${STUDY_NAME_HREF}`;
               }
             </script>
           </div>
@@ -493,7 +494,7 @@
             $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
 
             // Deployment partner content text
-            const DEPLOYMENT_PARTNER_NAME = `${data.intro.deployment_partner_name}`;
+            const DEPLOYMENT_PARTNER_NAME = `${data.intro.translated_text.en.deployment_partner_name}`;
             $('#deploymentPartnerName').text(DEPLOYMENT_PARTNER_NAME);
             
             // Program or study specific differences
