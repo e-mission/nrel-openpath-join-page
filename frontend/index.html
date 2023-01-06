@@ -215,32 +215,6 @@
       </div>
 
       </div>
-      
-      <script >        
-        var curr_lang = "en";
-
-        function getLang() {
-          var selectBox = document.getElementById("buttonBox");
-          var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-          curr_lang = selectedValue;
-          console.log("You have selected " + curr_lang);
-          localStorage.setItem("langValue", curr_lang);
-          document.getElementById("langValueButton").value = selectedValue;
-          
-
-          // if(localStorage.getItem("langValue") == "es"){
-	        //   document.getElementById('ENGL').style.display = "block";
-          //   document.getElementById('SPAN').style.display = "none";
-          // }
-          // else{
-	        //   document.getElementById('ENGL').style.display = "none";
-          //   document.getElementById('SPAN').style.display = "block";
-          // }
-
-          //location.reload();
-
-        }
-      </script>
 
     </nav>
     </div><!--container-->
@@ -289,6 +263,7 @@
          <div class="row">
             <div class="col-lg-9">
                <h1 id="studyTitleOne"></h1>
+               <p class="greeting"></p>
 
               <p style="display:inline;">
                 <span class="thankYouMessage lead">Thank you for participating in the </span>
@@ -554,47 +529,35 @@
         const study_name = first_domain.substr(0,openpath_index);
         return study_name;
       }
+
+      var curr_lang = "en"; // Default language is set to English
+
+      function getLang(){
+
+      var selectBox = document.getElementById("buttonBox");
+      var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+      curr_lang = selectedValue;
+      localStorage.setItem("langValue", curr_lang);
+
 			$(function() {
 				$(document).ready(function() {
+
 					const STUDY_NAME = _getStudyName(window.location);
           const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
 
-          // Generate study-join QR code
-          var qrcode = new QRCode(document.getElementById("qrcode"), {
-	          text: JOIN_CODE,
-	          width: 100,
-	          height: 100,
-	          colorDark : "#000000",
-	          colorLight : "#ffffff",
-	          correctLevel : QRCode.CorrectLevel.H
-          });
           $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`, function(data) {
-            
-            function header(){
-              if (localStorage.getItem("langValue") == "en"){
-                console.log(localStorage.getItem("langValue"));
-                return data.intro.translated_text.en
-              }
-              if(localStorage.getItem("langValue") == "es"){
-                console.log(localStorage.getItem("langValue"));
-                return data.intro.translated_text.es
-              }
-              console.log(localStorage.getItem("langValue"));
-
-              return data.intro.translated_text.en  //Default language
-            }
 
             // Title card
-            const PAGE_TITLE_TEXT = `${header().deployment_name} Join Page`
-            $('#pageTitle').text(PAGE_TITLE_TEXT)
+            const PAGE_TITLE_TEXT = `${data.intro.translated_text[curr_lang].deployment_name} Join Page`
+            $('#pageTitle').text(PAGE_TITLE_TEXT);
             document.title = PAGE_TITLE_TEXT;
-            
+
             // Navigation links
             const PUBLIC_DASHBOARD_LINK = data.server.connectUrl.replace("api", "public");;
             $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
 
             // Deployment partner content text
-            const DEPLOYMENT_PARTNER_NAME = `${header().deployment_partner_name}`;
+            const DEPLOYMENT_PARTNER_NAME = `${data.intro.translated_text[curr_lang].deployment_partner_name}`;
             $('#deploymentPartnerName').text(DEPLOYMENT_PARTNER_NAME);
             
             // Program or study specific differences
@@ -607,17 +570,17 @@
             $('#programOrStudy').text(PROGRAM_OR_STUDY);
 
             // Study title content text
-            const STUDY_TITLE_TEXT = DEPLOYMENT_PARTNER_NAME + ` ${header().deployment_name}`;
+            const STUDY_TITLE_TEXT = DEPLOYMENT_PARTNER_NAME + ` ${data.intro.translated_text[curr_lang].deployment_name}`;
             $('#studyTitleOne').text(STUDY_TITLE_TEXT);
             $('#studyTitleTwo').text(STUDY_TITLE_TEXT);
 
             // Short textual description content text
-            const SHORT_TEXTUAL_DESCRIPTION_TEXT = `${header().short_textual_description}`;
+            const SHORT_TEXTUAL_DESCRIPTION_TEXT = `${data.intro.translated_text[curr_lang].short_textual_description}`;
             $('#shortTextualDescription').text(SHORT_TEXTUAL_DESCRIPTION_TEXT);
             
             // Why we collect content text
             //TODO: This will not work in any language other than English because the dynamic config file has why_we_collect for the English translation and why_we_collect_es for the Spanish translation. It must be fixed!
-            const WHY_WE_COLLECT_TEXT = `${header().why_we_collect}`;
+            const WHY_WE_COLLECT_TEXT = `${data.intro.translated_text[curr_lang].why_we_collect}`;
             $('#whyWeCollect').text(WHY_WE_COLLECT_TEXT);
             
             // Join study text
@@ -635,7 +598,87 @@
             // Research questions generation
             $('#researchQuestions').append("<ul id='cList'></ul>");
             for (i = 0; i < 3; i++) { // 3 research questions maximum
-              var RESEARCH_QUESTION_TEXT = `${header().research_questions[i]}`;
+              var RESEARCH_QUESTION_TEXT = `${data.intro.translated_text[curr_lang].research_questions[i]}`;
+              if(RESEARCH_QUESTION_TEXT == "undefined") { // Skip the entry if is not defined.
+                continue;
+              }
+              $("#cList").append("<li>" + RESEARCH_QUESTION_TEXT + "</li>");
+            }
+          });
+        });
+      })};
+
+      // This code will act as the first page reload.
+
+      $(function() {
+				$(document).ready(function() {
+
+					const STUDY_NAME = _getStudyName(window.location);
+          const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
+
+          // Generate study-join QR code
+          var qrcode = new QRCode(document.getElementById("qrcode"), {
+	          text: JOIN_CODE,
+	          width: 100,
+	          height: 100,
+	          colorDark : "#000000",
+	          colorLight : "#ffffff",
+	          correctLevel : QRCode.CorrectLevel.H
+          });
+          $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`, function(data) {
+
+            // Title card
+            const PAGE_TITLE_TEXT = `${data.intro.translated_text[curr_lang].deployment_name} Join Page`
+            $('#pageTitle').text(PAGE_TITLE_TEXT);
+            document.title = PAGE_TITLE_TEXT;
+
+            // Navigation links
+            const PUBLIC_DASHBOARD_LINK = data.server.connectUrl.replace("api", "public");;
+            $('#publicDashboardLink').attr('href', PUBLIC_DASHBOARD_LINK);
+
+            // Deployment partner content text
+            const DEPLOYMENT_PARTNER_NAME = `${data.intro.translated_text[curr_lang].deployment_partner_name}`;
+            $('#deploymentPartnerName').text(DEPLOYMENT_PARTNER_NAME);
+            
+            // Program or study specific differences
+            const PROGRAM_OR_STUDY = `${data.intro.program_or_study}`;
+            if(PROGRAM_OR_STUDY == 'study') {
+              $('#tokenType').text("an autogenerated ");
+            } else if(PROGRAM_OR_STUDY == 'program') {
+              $('#tokenType').text("a program-provided ");
+            }
+            $('#programOrStudy').text(PROGRAM_OR_STUDY);
+
+            // Study title content text
+            const STUDY_TITLE_TEXT = DEPLOYMENT_PARTNER_NAME + ` ${data.intro.translated_text[curr_lang].deployment_name}`;
+            $('#studyTitleOne').text(STUDY_TITLE_TEXT);
+            $('#studyTitleTwo').text(STUDY_TITLE_TEXT);
+
+            // Short textual description content text
+            const SHORT_TEXTUAL_DESCRIPTION_TEXT = `${data.intro.translated_text[curr_lang].short_textual_description}`;
+            $('#shortTextualDescription').text(SHORT_TEXTUAL_DESCRIPTION_TEXT);
+            
+            // Why we collect content text
+            //TODO: This will not work in any language other than English because the dynamic config file has why_we_collect for the English translation and why_we_collect_es for the Spanish translation. It must be fixed!
+            const WHY_WE_COLLECT_TEXT = `${data.intro.translated_text[curr_lang].why_we_collect}`;
+            $('#whyWeCollect').text(WHY_WE_COLLECT_TEXT);
+            
+            // Join study text
+            // JOIN_CODE was already defined above
+            $('#joinStudyLink').text(JOIN_CODE)
+            $('#joinStudyLink').attr('href', JOIN_CODE)
+
+            // Token privacy content text   //TODO: Same as before. Add translation. Talk to Shankari about this. See config files.
+            const TOKEN_PRIVACY_INFO_STUDY_TEXT = "You will log in using a token generated by the phone app. Only you know your token. Since we don’t collect email or phone number, there is no “Forgot password” functionality. NREL staff cannot identify your account or restore your data without your token. You should save this token in case you change phones.";
+            const TOKEN_PRIVACY_INFO_PROGRAM_TEXT = "You have been provided with a token by " + `${DEPLOYMENT_PARTNER_NAME}` + " to log in to the app. Please save this token in a safe place in case you need to reset your phone or change phones. If you have lost your token, please contact your admin at " + `${DEPLOYMENT_PARTNER_NAME}` + " for assistance.";
+              // If it's a study, go with the study text. Else go with the program text
+            const TOKEN_PRIVACY_INFO_TEXT = PROGRAM_OR_STUDY == 'study'? TOKEN_PRIVACY_INFO_STUDY_TEXT : TOKEN_PRIVACY_INFO_PROGRAM_TEXT;
+            $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
+
+            // Research questions generation
+            $('#researchQuestions').append("<ul id='cList'></ul>");
+            for (i = 0; i < 3; i++) { // 3 research questions maximum
+              var RESEARCH_QUESTION_TEXT = `${data.intro.translated_text[curr_lang].research_questions[i]}`;
               if(RESEARCH_QUESTION_TEXT == "undefined") { // Skip the entry if is not defined.
                 continue;
               }
