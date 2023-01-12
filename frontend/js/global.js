@@ -3,7 +3,7 @@ function updateText() {
 	var i18n = $.i18n(), language, search, searchFiler, publicDashboard, participantGuidelines, tsdc, thankYouMessage, studyPurpose,
 	dataCollection, dC1, dC2, installNREL, iN1, iN2, iN3, iN4, iN5, joinStudy, jS1, jS2, dataPrivacy, dP1,dP2,dP3,dP4,dP5,dP6,dP7,
 	dP8,dP9,dP10,dP11,dP12,dP13,contact,contactTitle,nrel, about, research, workWithUs, news, careers, contactUs, visit, subscribe, 
-	accessibility, disclaimer, snp, siteFeedback, developers, employees, ft1, usde, oeere, ft2, ase
+	accessibility, disclaimer, snp, siteFeedback, developers, employees, ft1, usde, oeere, ft2, ase, tokenPrivacyInfo;
 
 	language = $( '.language option:selected' ).val();
 	search = 'search';
@@ -61,6 +61,7 @@ function updateText() {
 	oeere = 'oeere';
 	ft2 = 'ft2';
 	ase = 'ase';
+	tokenPrivacyInfo = 'tokenPrivacyInfo';
 	
 
 	i18n.locale = language;
@@ -232,7 +233,9 @@ function updateText() {
 	var getASE = $.i18n(ase);
 	$( '.ase' ).text(getASE);
 
-		  
+	var getTokenPrivacyInfo = $.i18n(tokenPrivacyInfo);
+	$( '.TPI' ).text(getTokenPrivacyInfo);
+
 	  } );
   }
   // Enable debug
@@ -241,5 +244,5 @@ function updateText() {
   $( document ).ready( function ( $ ) {
 	'use strict';
 	updateText();
-	$( '.search, .searchFiler, .publicDashboard, .participantGuidelines, .tsdc, .language, .installNREL, .iN1, .iN2, .iN3, .iN4, .iN5, .joinStudy, .jS1, .jS2' ).on( 'change keyup', updateText );
+	$( '.search, .searchFiler, .publicDashboard, .participantGuidelines, .tsdc, .language, .installNREL, .iN1, .iN2, .iN3, .iN4, .iN5, .joinStudy, .jS1, .jS2, .TPI' ).on( 'change keyup', updateText );
   } );
