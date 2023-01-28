@@ -544,11 +544,10 @@
 
 					const STUDY_NAME = _getStudyName(window.location);
           const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
+          const data = window.text;
 
-          $.getJSON(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`, function(data) {
-
-            // Title card
-            const PAGE_TITLE_TEXT = `${data.intro.translated_text[curr_lang].deployment_name} Join Page`
+          // Title card
+          const PAGE_TITLE_TEXT = `${data.intro.translated_text[curr_lang].deployment_name} Join Page`
             $('#pageTitle').text(PAGE_TITLE_TEXT);
             document.title = PAGE_TITLE_TEXT;
 
@@ -605,14 +604,22 @@
               }
               $("#cList").append("<li>" + RESEARCH_QUESTION_TEXT + "</li>");
             }
-          });
         });
       })};
 
       //Page load order
 
-      //Get data
-      getLang();
+      const STUDY_NAME = _getStudyName(window.location);
+      async function fetchText() {
+        const response = await fetch(`https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`);
+        const textFetch = await response.json();
+        return textFetch;
+      }
+
+      fetchText().then(textFetch => { 
+        window.text = textFetch;
+        getLang();
+      });
       
       $(document).ready(function() {
 
