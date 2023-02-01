@@ -58,41 +58,19 @@
     <script src="js/global.js"></script>
 
     <!-- Language button styling -->    
-    <style>
-      .dropbtn {
-        background-color: #ff9900;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
+
+      <style>
+
+      .box {
+        height: 36px;
+        width: 110px;
+        background-color: #ffffff;
+        outline: 2px solid rgb(141, 195, 239);
       }
-      
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-      
-      .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-      }
-      
-      .dropdown-content a:hover {background-color: #ddd;}
-      
-      .dropdown:hover .dropdown-content {display: block;}
-      
-      .dropdown:hover .dropbtn {background-color: #3e8e41;}
+      .boxOption {
+        background-color: rgb(255, 255, 255);
+      }      
+
       </style>
 
 		<!-- == END APPLICATION HEAD == -->
@@ -179,6 +157,7 @@
 
       <!-- Navigation -->
       <div class="navbar-collapse collapse" id="topnav-collapse">
+        
         <ul class="nav navbar-nav">
           <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" class="publicDashboard nav-link">Public Dashboard</a></li>
           <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" class="participantGuidelines nav-link">Participant Guidelines</a></li>
@@ -195,23 +174,11 @@
           <span class="fa fa-search" aria-hidden="true"></span>
         </button>
 
-        <!--Translation Button-->
-        <!--
-        <div class="dropdown">
-          <button class="dropbtn">Language</button>
-          <div class="language dropdown-content">
-            <a href="#" value="en">English</a>
-            <a href="#" value="es">Español</a>
-          </div>
-        </div>
-      -->
-
-      <!-- Experimental button; It will be removed-->
-
+      <!-- Language select button-->
       <div class="lead">
-        <select id ="buttonBox" class="language" onchange="getLang()">
-          <option value="en">English</option>;
-          <option value="es">Español</option>;         
+        <select name="Select language" id="buttonBox" class="language box custom-select sources" onchange="getLang()">
+          <option class="boxOption" value="en">English</option>;
+          <option class="boxOption" value="es">Español</option>;  
         </select>
       </div>
 
