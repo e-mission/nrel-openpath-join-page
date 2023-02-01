@@ -501,6 +501,7 @@
       }
 
       var curr_lang = "en"; // Default language is set to English
+      var data;
 
       function getLang(){
 
@@ -514,7 +515,6 @@
 
             const STUDY_NAME = _getStudyName(window.location);
             const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
-            const data = window.text;
 
             // Title card
             const PAGE_TITLE_TEXT = `${data.intro.translated_text[curr_lang].deployment_name} Join Page`
@@ -591,7 +591,7 @@
       }
 
       fetchText().then(textFetch => { 
-        window.text = textFetch;
+        data = textFetch;
         getLang();
       });
       
