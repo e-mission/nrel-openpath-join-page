@@ -157,9 +157,9 @@
       <div class="navbar-collapse collapse" id="topnav-collapse">
         
         <ul class="nav navbar-nav">
-          <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" class="publicDashboard nav-link">Public Dashboard</a></li>
-          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" class="participantGuidelines nav-link">Participant Guidelines</a></li>
-          <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html" class="tsdc nav-link">TSDC</a></li>
+          <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" data-i18n="publicDashboard" class="nav-link">Public Dashboard</a></li>
+          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" data-i18n="participantGuidelines" class="nav-link">Participant Guidelines</a></li>
+          <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html" data-i18n="tsdc" class="nav-link">TSDC</a></li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
           <!--Navigation tabs are commented out for reference
@@ -232,23 +232,23 @@
                <p class="greeting"></p>
 
               <p style="display:inline;">
-                <span class="thankYouMessage lead">Thank you for participating in the </span>
+                <span data-i18n="thankYouMessage" class="lead">Thank you for participating in the </span>
                 <span id="studyTitleTwo" class="lead"></span>
                 <span>.</span>
               </p>
 
               <p></p> <!-- Adds a precise space-->
                               
-               <h2 class="studyPurpose">Purpose of Study</h2>
+               <h2 data-i18n="studyPurpose">Purpose of Study</h2>
 
                <p id="shortTextualDescription"></p>
                
-               <h2 class="dataCollection">Data Collection</h2>
+               <h2 data-i18n="dataCollection">Data Collection</h2>
                
                <p style="display:inline;">
-                <span class="dC1">We will use the </span>
+                <span data-i18n="dC1">We will use the </span>
                 <a href="https://www.nrel.gov/transportation/openpath.html">NREL OpenPATH</a> 
-                <span class="dC2"> platform for this data collection. This open-source platform collects a complete snapshot 
+                <span data-i18n="dC2"> platform for this data collection. This open-source platform collects a complete snapshot 
                   of your travel and uses it to estimate yourindividual transportation carbon 
                   footprint and compare it against US 2030 and 2050 goals. It also computes and 
                   publishes aggregate metrics around mode share and distance traveled. </span> 
@@ -264,40 +264,40 @@
                </div>
                <p id="whyWeCollect"></p>
                
-               <h2 class="installNREL">Install the NREL OpenPATH App on Your Phone</h2>
+               <h2 data-i18n="installNREL">Install the NREL OpenPATH App on Your Phone</h2>
                
                <ol>
                   <li>
                     <p style="display:inline;">
-                      <span class="iN1">Download the NREL OpenPATH app from the</span>
-                      <a href="https://apps.apple.com/us/app/nrel-openpath/id1628058068">Apple Store</a> or the 
-                      <span class="iN2"> or the </span>
+                      <span data-i18n="iN1">Download the NREL OpenPATH app from the</span>
+                      <a href="https://apps.apple.com/us/app/nrel-openpath/id1628058068">Apple Store</a>
+                      <span data-i18n="iN2"> or </span>
                       <a href="https://play.google.com/store/apps/details?id=gov.nrel.cims.openpath">Google Play Store</a>
                       <span>.</span>
                       
                     </p>
                   </li>
                   
-                  <li class="iN3">Scan the QR code or visit the link below to join this program.</li>
+                  <li data-i18n="iN3">Scan the QR code or visit the link below to join this program.</li>
                   
-                  <li class="iN4">Remember to give all the requested permissions, including ("always") background location
+                  <li data-i18n="iN4">Remember to give all the requested permissions, including ("always") background location
                      access. If you have a Samsung or Huawei phone, turn off background restrictions.
                   </li>
                   
-                  <li class="iN5">Track your trips, label them when prompted, and check out your carbon footprint.</li>
+                  <li data-i18n="iN5">Track your trips, label them when prompted, and check out your carbon footprint.</li>
                   
                </ol>
                <p style="display:inline;">
-                <span class="iN6">For additional information, see the </span>
-                <a class="iN7" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html">participant guidelines</a>
+                <span data-i18n="iN6">For additional information, see the </span>
+                <a data-i18n="iN7" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html">participant guidelines</a>
                 <span>.</span>
               </p>
                
                <div class="well text-center">
                   
-                  <h2 class="joinStudy">Join the Study</h2>
+                  <h2 data-i18n="joinStudy">Join the Study</h2>
                   
-                  <p class="jS1">After you have installed the NREL OpenPATH app on your phone, join the study by scanning
+                  <p data-i18n="jS1">After you have installed the NREL OpenPATH app on your phone, join the study by scanning
                      the QR code or visiting the link below using your phone.
                   </p>
                   
@@ -309,66 +309,65 @@
                   
                   <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
 
-                    <span class="jS2">You will log in using an autogenerated token. Save your token in case you lose or
+                    <span data-i18n="jS2">You will log in using an autogenerated token. Save your token in case you lose or
                       change phones. If you lose your token, NREL cannot retrieve it for you since we do
                       not have the ability to match a token to an individual user.</span>
                   
                </div>
                
-               <h2 class="dataPrivacy">Data Privacy and Security</h2>
+               <h2 data-i18n="dataPrivacy">Data Privacy and Security</h2>
                
                <p style="display:inline;">
-                <span class="dP1">The system </span>
-                <strong class="dP2">will not</strong>
-                <span class="dP3">collect any of the traditional personally identifiable information (i.e., no name,
+                <span data-i18n="dP1">The system </span>
+                <strong data-i18n="dP2">will not</strong>
+                <span data-i18n="dP3">collect any of the traditional personally identifiable information (i.e., no name,
                   email, or phone number).</span>
               </p>
 
               <p></p><!-- Adds a precise space-->
 
-              <!--TODO: Add translation-->
-               <p class="TPI">You will log in using a token generated by the phone app. Only you know your token. Since we don’t collect email or phone number, there is no “Forgot password” functionality. NREL staff cannot identify your account or restore your data without your token. You should save this token in case you change phones.</p>
+               <p data-i18n="tokenPrivacyInfo">You will log in using a token generated by the phone app. Only you know your token. Since we don’t collect email or phone number, there is no “Forgot password” functionality. NREL staff cannot identify your account or restore your data without your token. You should save this token in case you change phones.</p>
                
-               <p class="dP4">The collected data will be stored in a FEDRAMP-certified medium cluster at NREL and
+               <p data-i18n="dP4">The collected data will be stored in a FEDRAMP-certified medium cluster at NREL and
                   encrypted both in transit and at rest. Data from this study will be stored separately
                   from other study data using the NREL-hosted version of the OpenPATH platform.
                </p>
                
-               <p class="dP5">The raw data from this study will only be made available to:</p>
+               <p data-i18n="dP5">The raw data from this study will only be made available to:</p>
                
                <ul>
                 
                   <li>
                     <p style="display:inline;">
-                      <span class="dP6">Program administrators from </span>
+                      <span data-i18n="dP6">Program administrators from </span>
                       <a id="deploymentPartnerName"></a>
-                      <span class="dP7"> to monitor the </span>
+                      <span data-i18n="dP7"> to monitor the </span>
                       <a id="programOrStudy"></a>
-                      <span class="dP8"> and potentially send recommendations for alternate travel modes.</span>
+                      <span data-i18n="dP8"> and potentially send recommendations for alternate travel modes.</span>
                     </p>
                   </li>
                   
-                  <li class="dP9">NREL OpenPATH developers for debugging.</li>
+                  <li data-i18n="dP9">NREL OpenPATH developers for debugging.</li>
 
                </ul>
                
                <p style="display:inline;">
-                <span class="dP10">On completion of the study, the data will be archived in NREL's </span>
-                <a class="dP13" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html">Transportation Secure Data Center</a>
-                <span class="dP11"> to support travel behavior research.</span>
+                <span data-i18n="dP10">On completion of the study, the data will be archived in NREL's </span>
+                <a data-i18n="dP13" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html">Transportation Secure Data Center</a>
+                <span data-i18n="dP11"> to support travel behavior research.</span>
                 </p>
 
                 <p></p><!-- Adds a precise space-->
                
-               <p class="dP12">Examples of research that might use the data include:</p>
+               <p data-i18n="dP12">Examples of research that might use the data include:</p>
                
                <div id="researchQuestions"></div>
                
-               <h2 class="contact">Contact</h2>
+               <h2 data-i18n="contact">Contact</h2>
                
                <div class="bio">
                   <p class="header">K. Shankari</p>
-                  <p class="contactTitle header-description">Postdoctoral Researcher, Director's Fellow</p><a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a><br><a href="tel:+1-303-384-6450"><span class="fa fa-phone-square" aria-hidden="true"></span>303-384-6450</a></div>
+                  <p data-i18n="contactTitle" class="header-description">Postdoctoral Researcher, Director's Fellow</p><a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a><br><a href="tel:+1-303-384-6450"><span class="fa fa-phone-square" aria-hidden="true"></span>303-384-6450</a></div>
                
             </div>
 				</nav>
@@ -387,11 +386,11 @@
                   </div>
                   <div class="col col-lg-7">
                       <div class="d-flex flex-column flex-lg-row justify-content-lg-start global">
-                          <div><a class="about" href="http://www.nrel.gov/about/index.html">About</a></div>
-                          <div><a class="research" href="http://www.nrel.gov/research/index.html">Research</a></div>
-                          <div><a class="workWithUs" href="http://www.nrel.gov/index.html">Work with Us</a></div>
-                          <div><a class="news" href="http://www.nrel.gov/news/index.html">News</a></div>
-                          <div><a class="careers" href="http://www.nrel.gov/careers/index.html">Careers</a></div>
+                          <div><a data-i18n="about" href="http://www.nrel.gov/about/index.html">About</a></div>
+                          <div><a data-i18n="research" href="http://www.nrel.gov/research/index.html">Research</a></div>
+                          <div><a data-i18n="workWithUs" href="http://www.nrel.gov/index.html">Work with Us</a></div>
+                          <div><a data-i18n="news" href="http://www.nrel.gov/news/index.html">News</a></div>
+                          <div><a data-i18n="careers" href="http://www.nrel.gov/careers/index.html">Careers</a></div>
                       </div>
                   </div>
               </div>
@@ -401,9 +400,9 @@
            <div class="container">
                <div class="row">
                   <div class="col-md-4 col-lg-5">
-                      <div><a class="contactUs" href="http://www.nrel.gov/webmaster.html">Contact Us</a></div>
-                      <div class="mt-2"><a class="visit" href="http://www.nrel.gov/about/visiting-nrel.html">Visit</a></div>
-                      <div class="mt-2"><a class="subscribe" href="http://www.nrel.gov/news/subscribe.html">Subscribe</a></div>
+                      <div><a data-i18n="contactUs" href="http://www.nrel.gov/webmaster.html">Contact Us</a></div>
+                      <div class="mt-2"><a data-i18n="visit" href="http://www.nrel.gov/about/visiting-nrel.html">Visit</a></div>
+                      <div class="mt-2"><a data-i18n="subscribe" href="http://www.nrel.gov/news/subscribe.html">Subscribe</a></div>
                       <div class="mt-3">
                           <ul class="social-links list-inline">
                               <li class="list-inline-item"><a href="https://www.facebook.com/nationalrenewableenergylab" aria-label="Follow NREL on Facebook"><i class="fa fa-facebook-square"><!--facebook--></i></a>
@@ -422,15 +421,15 @@
                   <div class="col-md-8 col-lg-7 globalsecondary">
                       <div class="row">
                           <div class="col-sm-6 col-lg-3">
-                              <div class="mt-1"><a class="accessibility" href="http://www.nrel.gov/accessibility.html">Accessibility</a></div>
-                              <div class="mt-1"><a class="disclaimer" href="http://www.nrel.gov/disclaimer.html">Disclaimer</a></div>
-                              <div class="mt-1"><a class="snp" href="http://www.nrel.gov/security.html">Security and Privacy</a></div>
-                              <div class="mt-1"><a class="siteFeedback" href="http://www.nrel.gov/webmaster.html">Site Feedback</a></div>
+                              <div class="mt-1"><a data-i18n="accessibility" href="http://www.nrel.gov/accessibility.html">Accessibility</a></div>
+                              <div class="mt-1"><a data-i18n="disclaimer" href="http://www.nrel.gov/disclaimer.html">Disclaimer</a></div>
+                              <div class="mt-1"><a data-i18n="snp" href="http://www.nrel.gov/security.html">Security and Privacy</a></div>
+                              <div class="mt-1"><a data-i18n="siteFeedback" href="http://www.nrel.gov/webmaster.html">Site Feedback</a></div>
                           </div>
                           <div class="col-sm-6 col-lg-3">
             
-                              <div class="mt-1"><a class="developers" href="https://developer.nrel.gov/">Developers</a></div>
-                              <div class="mt-1"><a class="employees" href="https://thesource.nrel.gov/">Employees</a></div>
+                              <div class="mt-1"><a data-i18n="developers" href="https://developer.nrel.gov/">Developers</a></div>
+                              <div class="mt-1"><a data-i18n="employees" href="https://thesource.nrel.gov/">Employees</a></div>
                           </div>
                       </div>
                   </div>
@@ -445,11 +444,11 @@
 
                    <div class="col-12 col-sm-7">
                     <p class="nrel-attr" style="display:inline;">
-                      <span class="ft1">The National Renewable Energy Laboratory is a national laboratory of the </span>
-                      <a class="usde" href="https://www.energy.gov/">U.S. Department of Energy</a>,
-                      <a class="oeere" href="https://www.energy.gov/eere/office-energy-efficiency-renewable-energy">Office of Energy Efficiency and Renewable Energy</a>
-                      <span class="ft2">, operated by the </span>
-                      <a class="ase" href="https://www.allianceforsustainableenergy.org/">Alliance for Sustainable Energy LLC</a>.
+                      <span data-i18n="ft1">The National Renewable Energy Laboratory is a national laboratory of the </span>
+                      <a data-i18n="usde" href="https://www.energy.gov/">U.S. Department of Energy</a>,
+                      <a data-i18n="oeere" href="https://www.energy.gov/eere/office-energy-efficiency-renewable-energy">Office of Energy Efficiency and Renewable Energy</a>
+                      <span data-i18n="ft2">, operated by the </span>
+                      <a data-i18n="ase" href="https://www.allianceforsustainableenergy.org/">Alliance for Sustainable Energy LLC</a>.
                     </p>
 
                     
@@ -614,64 +613,7 @@ function updateText() {
       i18n.locale = language;
       i18n.load( 'i18n/' + i18n.locale + '.json', i18n.locale ).done(
         function () {
-
-        $( '.Search' ).text($.i18n('search'));
-        $('.publicDashboard').text($.i18n('publicDashboard'));
-        $( '.participantGuidelines' ).text($.i18n('participantGuidelines'));
-        $( '.tsdc' ).text($.i18n('tsdc'));
-        $( '.thankYouMessage' ).text($.i18n('thankYouMessage'));
-        $( '.studyPurpose' ).text($.i18n('studyPurpose'));
-        $( '.dataCollection' ).text($.i18n('dataCollection'));
-        $( '.dC1' ).text($.i18n('dC1'));
-        $( '.dC2' ).text($.i18n('dC2')); 
-        $( '.installNREL' ).text($.i18n('installNREL'));
-        $( '.iN1' ).text($.i18n('iN1'));
-        $( '.iN2' ).text($.i18n('iN2'));
-        $( '.iN3' ).text($.i18n('iN3'));
-        $( '.iN4' ).text($.i18n('iN4'));
-        $( '.iN5' ).text($.i18n('iN5'));
-        $( '.iN6' ).text($.i18n('iN6'));
-        $( '.iN7' ).text($.i18n('iN7'));
-        $( '.joinStudy' ).text($.i18n('joinStudy'));
-        $( '.jS1' ).text($.i18n('jS1'));
-        $( '.jS2' ).text($.i18n('jS2'));
-        $( '.dataPrivacy' ).text($.i18n('dataPrivacy'));
-        $( '.dP1' ).text($.i18n('dP1'));
-        $( '.dP2' ).text($.i18n('dP2'));
-        $( '.dP3' ).text($.i18n('dP3'));
-        $( '.dP4' ).text($.i18n('dP4'));
-        $( '.dP5' ).text($.i18n('dP5'));
-        $( '.dP6' ).text($.i18n('dP6'));
-        $( '.dP7' ).text($.i18n('dP7'));
-        $( '.dP8' ).text($.i18n('dP8'));
-        $( '.dP9' ).text($.i18n('dP9'));
-        $( '.dP10' ).text($.i18n('dP10'));
-        $( '.dP11' ).text($.i18n('dP11'));
-        $( '.dP12' ).text($.i18n('dP12'));
-        $( '.dP13' ).text($.i18n('dP13'));
-        $( '.contact' ).text($.i18n('contact'));
-        $( '.contactTitle' ).text($.i18n('contactTitle'));
-        $( '.nrel' ).text($.i18n('nrel'));
-        $( '.about' ).text($.i18n('about'));
-        $( '.research' ).text($.i18n('research'));
-        $( '.workWithUs' ).text($.i18n('workWithUs'));
-        $( '.news' ).text($.i18n('news'));
-        $( '.careers' ).text($.i18n('careers'));
-        $( '.contactUs' ).text($.i18n('contactUs'));
-        $( '.visit' ).text($.i18n('visit'));
-        $( '.subscribe' ).text($.i18n('subscribe'));
-        $( '.accessibility' ).text($.i18n('accessibility'));
-        $( '.disclaimer' ).text($.i18n('disclaimer'));
-        $( '.snp' ).text($.i18n('snp'));
-        $( '.siteFeedback' ).text($.i18n('siteFeedback'));
-        $( '.developers' ).text($.i18n('developers'));
-        $( '.employees' ).text($.i18n('employees'));
-        $( '.ft1' ).text($.i18n('ft1'));
-        $( '.usde' ).text($.i18n('usde'));
-        $( '.oeere' ).text($.i18n('oeere'));
-        $( '.ft2' ).text($.i18n('ft2'));
-        $( '.ase' ).text($.i18n('ase'));
-        $( '.TPI' ).text($.i18n('tokenPrivacyInfo'));
+          $('html').i18n();
         });
       }
       // Enable debug
