@@ -1,10 +1,13 @@
 version: "3"
 services:
   joinpage:
-    image: danjellz/http-server:latest
+    image: shankari/op-join-page:dev-latest
+    build:
+        context: .
+        dockerfile: frontend/Dockerfile.dev
     ports:
       # DASH in numbers
-      - "3274:8080"
+      - "3274:5050"
     volumes:
       - ./frontend:/public
     networks:
@@ -12,4 +15,3 @@ services:
 
 networks:
   emission:
-
