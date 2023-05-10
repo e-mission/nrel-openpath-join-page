@@ -540,8 +540,8 @@
         var img = document.getElementById("OpenPATH-dashboard-image");
         img.src=`client/img/OpenPATH-dashboard-preview-${curr_lang}.png`;
 
-        console.log("Configured study text is "+$.i18n("tokenPrivacyInfoStudyText"));
-        console.log("Configuring the program text with "+DEPLOYMENT_PARTNER_NAME);
+        // console.log("Configured study text is "+$.i18n("tokenPrivacyInfoStudyText"));
+        // console.log("Configuring the program text with "+DEPLOYMENT_PARTNER_NAME);
         // Token privacy content text
         const TOKEN_PRIVACY_INFO_STUDY_TEXT = $.i18n("tokenPrivacyInfoStudyText");
         const TOKEN_PRIVACY_INFO_PROGRAM_TEXT = $.i18n("tokenPrivacyInfoProgramText", DEPLOYMENT_PARTNER_NAME);
@@ -615,7 +615,6 @@
       $(document).ready(function() {
         STUDY_NAME = _getStudyName(window.location);
         const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
-        const SUPPORTED_LANGUAGES = ["en", "es"];
 
         // set the initial value to the current language
         // otherwise, if the dropdown is set to es and we reload the page, the
@@ -624,6 +623,8 @@
         // want to redisplay the text twice
         // https://stackoverflow.com/a/16979926/4040267
         $('#langSel').val(curr_lang);
+        const SUPPORTED_LANGUAGES = $.map($('#langSel')[0].options, (e) => e.value);
+        console.log("After reading from options, languages are ", SUPPORTED_LANGUAGES);
 
         // BEGIN: First round of loading
         const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
