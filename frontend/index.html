@@ -176,7 +176,7 @@
 
       <!-- Language select button-->
       <div class="lead">
-        <select name="Select language" id="buttonBox" class="language box custom-select sources" onchange="setLangAndRedisplayPage()" disabled>
+        <select name="Select language" id="langSel" class="language box custom-select sources" onchange="setLangAndRedisplayPage()" disabled>
           <option class="boxOption" value="en">English</option>;
           <option class="boxOption" value="es">Español</option>;
           <!-- <option class="boxOption" value="it">Italiano</option>;-->
@@ -587,10 +587,7 @@
       }
 
       const setLangAndRedisplayPage = function() {
-        var selectBox = document.getElementById("buttonBox");
-        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-        curr_lang = selectedValue;
-        localStorage.setItem("langValue", curr_lang);
+        curr_lang = $( '#langSel option:selected' ).val();
         $.i18n().locale = curr_lang;
         redisplayPage();
       }
@@ -619,6 +616,14 @@
         STUDY_NAME = _getStudyName(window.location);
         const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
         const SUPPORTED_LANGUAGES = ["en", "es"];
+
+        // set the initial value to the current language
+        // otherwise, if the dropdown is set to es and we reload the page, the
+        // text changes to en, but the dropdown stays as es
+        // we use the non-changing version of the selection because we don't
+        // want to redisplay the text twice
+        // https://stackoverflow.com/a/16979926/4040267
+        $('#langSel').val(curr_lang);
 
         // BEGIN: First round of loading
         const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
@@ -653,7 +658,7 @@
         // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
         Promise.all(otherI18nLoadPromises).then(() => {
             console.log("Finished loading other languages "+toLoadLanguages);
-            $('#buttonBox').prop('disabled', false)
+            $('#langSel').prop('disabled', false)
         });
         // END: Second round of loading
       });
