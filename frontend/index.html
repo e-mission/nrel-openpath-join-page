@@ -591,6 +591,7 @@
         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
         curr_lang = selectedValue;
         localStorage.setItem("langValue", curr_lang);
+        $.i18n().locale = curr_lang;
         redisplayPage();
       }
 
@@ -624,7 +625,7 @@
         // i18n.load returns a jquery promise, but apparently, since jquery3,
         // they are ES2015 compatible, so we don't need to wrap them
         // also we first load only the default language, so we can display the page ASAP
-        const i18nLoadPromise = $.i18n().load('i18n', curr_lang);
+        const i18nLoadPromise = $.i18n().load('i18n/'+curr_lang+'.json', curr_lang);
         const allAsyncLoadPromises = [i18nLoadPromise, dynamicLoadPromise];
         console.log("First round promises", allAsyncLoadPromises);
 
@@ -639,7 +640,7 @@
         // BEGIN: Second round of loading
         // then, we load all the other languages
         const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
-        const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n', l));
+        const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n/'+l+'.json', l));
         console.log("Second round promises of length ", otherI18nLoadPromises.length,
             " to load ", toLoadLanguages);
 
