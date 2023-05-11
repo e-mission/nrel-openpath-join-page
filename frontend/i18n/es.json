@@ -67,5 +67,8 @@
 	"ft2":", operado por la ",
 	"ase":"Alianza para la Energía Sostenible LLC",
 	"tokenPrivacyInfoStudyText":"Iniciará sesión con un token generado por la aplicación del teléfono. Solo tú conoces tu token. Dado que no recopilamos el correo electrónico ni el número de teléfono, no existe la función \"Olvidé mi contraseña\". El personal de NREL no puede identificar su cuenta ni restaurar sus datos sin su token. Debe guardar este token en caso de que cambie de teléfono.",
-	"tokenPrivacyInfoProgramText":"Se le ha proporcionado un token por "+ `${DEPLOYMENT_PARTNER_NAME}` + " para iniciar sesión en la aplicación. Guarda este código en un lugar seguro por si necesitas restablecer tu teléfono o cambiar de teléfono. Si has perdido tu token, ponte en contacto con tu administrador en " + `${DEPLOYMENT_PARTNER_NAME}` + " para asistencia."
+	"tokenPrivacyInfoProgramText":"Se le ha proporcionado un token por $1 para iniciar sesión en la aplicación. Guarda este código en un lugar seguro por si necesitas restablecer tu teléfono o cambiar de teléfono. Si has perdido tu token, ponte en contacto con tu administrador en $1 para asistencia.",
+    "invalidStudyTitle": "Estudio Inválido",
+    "pageLoadError": "Error al cargar elementos de la página",
+    "contactForAssistance": "Póngase en contacto con $1 para obtener ayuda"
 }
