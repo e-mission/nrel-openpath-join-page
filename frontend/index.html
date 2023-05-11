@@ -308,6 +308,10 @@
                   <div class="row justify-content-center">
                      
                     <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                    <div id="program-instructions" class="row" style="width:400px; margin-top:15px;">
+                        <img class="col col-50" src="client/img/capture_qr_code_mobile_phone.jpg">
+                        <img class="col col-50" src="client/img/copy_paste_token.jpg">
+                    </div>
                   </div>
                   
                   <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
@@ -624,12 +628,19 @@
             // JOIN_CODE was already defined above
             $('#joinStudyLink').text(JOIN_CODE)
             $('#joinStudyLink').attr('href', JOIN_CODE)
+
+            $('#program-instructions').hide();
         }
  catch (err) {
             setInvalid($.i18n("tokenCreationError"), err,
                 $.i18n("contactForAssistance", data.intro.program_admin_contact));
         }
 
+      }
+
+      const hideTokenAndURL = function() {
+        $('#qrcode').hide();
+        $('#joinStudyLink').hide();
       }
 
       const redisplayPage = function() {
@@ -692,7 +703,11 @@
         Promise.all(allAsyncLoadPromises).then(([i18nLoadResult, dynamicLoadResult]) => {
             console.log("Async results are ", i18nLoadResult, dynamicLoadResult);
             data = dynamicLoadResult;
-            validateAndGenerateToken();
+            if (data.intro.program_or_study == "study") {
+                validateAndGenerateToken();
+            } else {
+                hideTokenAndURL();
+            }
             redisplayPage();
         }).catch((error) => setInvalid("Error loading page elements",
             error, "Please contact k.shankari@nrel.gov for assistance"));
