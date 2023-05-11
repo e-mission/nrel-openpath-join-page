@@ -70,5 +70,7 @@
 	"tokenPrivacyInfoProgramText":"You have been provided with a token by $1 to log in to the app. Please save this token in a safe place in case you need to reset your phone or change phones. If you have lost your token, please contact your admin at $1 for assistance.",
     "invalidStudyTitle": "Invalid Study",
     "pageLoadError": "Error loading page elements",
-    "contactForAssistance": "Please contact $1 for assistance"
+    "tokenCreationError": "Error creating opcode token",
+    "contactForAssistance": "Please contact $1 for assistance",
+    "invalidSubgroupError": "Subgroup $1 not found in list $2"
 }

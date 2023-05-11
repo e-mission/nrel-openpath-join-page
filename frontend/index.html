@@ -508,6 +508,32 @@
         return study_name;
       }
 
+
+      const _getSubGroup = function(connectUrl) {
+        const param_subgroup_name = new URL(connectUrl).searchParams.get("sub_group");
+        if (data.intro.subgroups?.length > 0) {
+            if (data.intro.subgroups.includes(param_subgroup_name)) {
+                return param_subgroup_name;
+            } else {
+                throw new Error($.i18n("invalidSubgroupError", param_subgroup_name,
+                    data.intro.subgroups),
+                    {"cause": {"found": param_subgroup_name,
+                    "expected": data.intro.subgroups}})
+            }
+        } else {
+            return "default";
+        }
+      }
+
+      const _getRandomString = function(length) {
+        const randomInts = window.crypto.getRandomValues(new Uint8Array(length * 2));
+        const randomChars = Array.from(randomInts).map((b) => String.fromCharCode(b));
+        const randomString = randomChars.join("");
+        const validRandomString = window.btoa(randomString).replace(/[+/]/g, "");
+        const truncatedRandomString = validRandomString.substring(0, length);
+        return truncatedRandomString;
+     }
+
       var curr_lang = "en"; // Default language is set to English
       var data;
       var STUDY_NAME;
@@ -579,22 +605,31 @@
       }
 
       const validateAndGenerateToken = function() {
-        const JOIN_CODE = `nrelopenpath://join_study?label=${STUDY_NAME}&source=github`
+        try {
+            const SUB_GROUP = _getSubGroup(window.location);
+            const RANDOM_STRING = _getRandomString(32);
+            const GEN_TOKEN = `nrelop_${STUDY_NAME}_${SUB_GROUP}_${RANDOM_STRING}`
+            const JOIN_CODE = `nrelopenpath://login_token?token=${GEN_TOKEN}&source=github`
+            // Generate study-join QR code
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+              text: JOIN_CODE,
+              width: 100,
+              height: 100,
+              colorDark : "#000000",
+              colorLight : "#ffffff",
+              correctLevel : QRCode.CorrectLevel.H
+            });
 
-        // Generate study-join QR code
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-          text: JOIN_CODE,
-          width: 100,
-          height: 100,
-          colorDark : "#000000",
-          colorLight : "#ffffff",
-          correctLevel : QRCode.CorrectLevel.H
-        });
+            // Join study text
+            // JOIN_CODE was already defined above
+            $('#joinStudyLink').text(JOIN_CODE)
+            $('#joinStudyLink').attr('href', JOIN_CODE)
+        }
+ catch (err) {
+            setInvalid($.i18n("tokenCreationError"), err,
+                $.i18n("contactForAssistance", data.intro.program_admin_contact));
+        }
 
-        // Join study text
-        // JOIN_CODE was already defined above
-        $('#joinStudyLink').text(JOIN_CODE)
-        $('#joinStudyLink').attr('href', JOIN_CODE)
       }
 
       const redisplayPage = function() {
