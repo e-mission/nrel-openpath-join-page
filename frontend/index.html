@@ -533,14 +533,14 @@
 
       const _getSubGroup = function(connectUrl) {
         const param_subgroup_name = new URL(connectUrl).searchParams.get("sub_group");
-        if (data.intro.subgroups?.length > 0) {
-            if (data.intro.subgroups.includes(param_subgroup_name)) {
+        if (data.opcode?.subgroups?.length > 0) {
+            if (data.opcode.subgroups.includes(param_subgroup_name)) {
                 return param_subgroup_name;
             } else {
                 throw new Error($.i18n("invalidSubgroupError", param_subgroup_name,
-                    data.intro.subgroups),
+                    data.opcode.subgroups),
                     {"cause": {"found": param_subgroup_name,
-                    "expected": data.intro.subgroups}})
+                    "expected": data.opcode.subgroups}})
             }
         } else {
             return "default";
@@ -559,6 +559,7 @@
       var curr_lang = "en"; // Default language is set to English
       var data;
       var STUDY_NAME;
+      var OPCODE_AUTOGEN;
 
       const fillDynamicConfig = function() {
         // Title card
@@ -601,7 +602,7 @@
         const TOKEN_PRIVACY_INFO_STUDY_TEXT = $.i18n("tokenPrivacyInfoStudyText");
         const TOKEN_PRIVACY_INFO_PROGRAM_TEXT = $.i18n("tokenPrivacyInfoProgramText", DEPLOYMENT_PARTNER_NAME);
         // If it's a study, go with the study text. Else go with the program text
-        const TOKEN_PRIVACY_INFO_TEXT = PROGRAM_OR_STUDY == 'study'? TOKEN_PRIVACY_INFO_STUDY_TEXT : TOKEN_PRIVACY_INFO_PROGRAM_TEXT;
+        const TOKEN_PRIVACY_INFO_TEXT = OPCODE_AUTOGEN? TOKEN_PRIVACY_INFO_STUDY_TEXT : TOKEN_PRIVACY_INFO_PROGRAM_TEXT;
         $('#tokenPrivacyInfo').text(TOKEN_PRIVACY_INFO_TEXT);
 
         // Research questions generation
@@ -721,7 +722,10 @@
         Promise.all(allAsyncLoadPromises).then(([i18nLoadResult, dynamicLoadResult]) => {
             console.log("Async results are ", i18nLoadResult, dynamicLoadResult);
             data = dynamicLoadResult;
-            if (data.intro.program_or_study == "study") {
+            // TODO: Remove backwards compatibility at the end of 2024, once all
+            // current programs have completed
+            OPCODE_AUTOGEN = data.opcode?.autogen || data.intro.program_or_study == "study";
+            if (OPCODE_AUTOGEN) {
                 validateAndGenerateToken();
             } else {
                 hideTokenAndURL();
