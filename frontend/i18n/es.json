@@ -74,5 +74,7 @@
     "pageLoadError": "Error al cargar elementos de la página",
     "tokenCreationError": "Error al crear token de 'opcode'",
     "contactForAssistance": "Póngase en contacto con $1 para obtener ayuda",
-    "invalidSubgroupError": "Subgrupo $1 no encontrado en la lista $2"
+    "invalidSubgroupError": "Subgrupo $1 no encontrado en la lista $2",
+    "errorCopyingToClipboard": "Error al copiar al portapapeles",
+    "errorLoadingPageElements": "Error al cargar elementos de la página"
 }

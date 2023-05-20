@@ -675,7 +675,7 @@
                     // alert("Copied opcode "+GEN_TOKEN+" to clipboard");
                   },
                   () => {
-                    alert("Error copying opcode "+GEN_TOKEN+" to clipboard");
+                    alert($.i18n("errorCopyingToClipboard")+": '"+GEN_TOKEN+"'");
                   }
                 );
             } );
@@ -760,8 +760,8 @@
                 hideTokenAndURL();
             }
             redisplayPage();
-        }).catch((error) => setInvalid("Error loading page elements",
-            error, "Please contact k.shankari@nrel.gov for assistance"));
+        }).catch((error) => setInvalid($.i18n("errorLoadingPageElements"),
+            error, $.i18n("contactForAssistance", "k.shankari@nrel.gov")));
         // the error elements are hardcoded here because we may have an error
         // in loading the i18n, in which case we will not have i18n-ized text
         // available to display.
