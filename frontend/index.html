@@ -645,7 +645,7 @@
             const RANDOM_STRING = _getRandomString(32);
             const IS_TESTER = _isTester(window.location);
             const GEN_TOKEN = IS_TESTER? `nrelop_${STUDY_NAME}_${SUB_GROUP}_test_${RANDOM_STRING}` : `nrelop_${STUDY_NAME}_${SUB_GROUP}_${RANDOM_STRING}`
-            const JOIN_CODE = `nrelopenpath://login_token?token=${GEN_TOKEN}&source=github`
+            const JOIN_CODE = `nrelopenpath://login_token?token=${GEN_TOKEN}`
             // Generate study-join QR code
             var qrcode = new QRCode(document.getElementById("qrcode"), {
               text: JOIN_CODE,
