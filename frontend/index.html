@@ -311,7 +311,7 @@
                     <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
                   </div>
 
-                  <p><a id="joinStudyLink" href="should_be_the_join_link"></a></p>
+                  <p><span id="opCodeText"></span><span>&nbsp;&nbsp;&nbsp;</span><span class="fa fa-copy" id="opCodeCopy"></span></p>
 
 
                     <span data-i18n="[html]jS2">You will log in using a randomly token. Save your token in case you lose or
@@ -547,6 +547,9 @@
         }
       }
 
+      // Adapted from https://stackoverflow.com/a/63363662/4040267
+      // made available under a CC BY-SA 4.0 license
+
       const _getRandomString = function(length) {
         const randomInts = window.crypto.getRandomValues(new Uint8Array(length * 2));
         const randomChars = Array.from(randomInts).map((b) => String.fromCharCode(b));
@@ -646,12 +649,29 @@
 
             // Join study text
             // JOIN_CODE was already defined above
-            $('#joinStudyLink').text(JOIN_CODE)
-            $('#joinStudyLink').attr('href', JOIN_CODE)
-
+            $('#opCodeText').text(GEN_TOKEN)
+            $( '#opCodeCopy').on( "click", function() {
+                navigator.clipboard.writeText(GEN_TOKEN).then(
+                  () => {
+                    // github-style conversion to green check mark and back
+                    // after 5 seconds
+                    $( '#opCodeCopy').removeClass("fa-copy");
+                    $( '#opCodeCopy').addClass("fa-check");
+                    $( '#opCodeCopy').css("color", "green");
+                    setTimeout(() => {
+                        $( '#opCodeCopy').removeClass("fa-check");
+                        $( '#opCodeCopy').addClass("fa-copy");
+                        $( '#opCodeCopy').css("color", "black");
+                    }, 5000);
+                    // alert("Copied opcode "+GEN_TOKEN+" to clipboard");
+                  },
+                  () => {
+                    alert("Error copying opcode "+GEN_TOKEN+" to clipboard");
+                  }
+                );
+            } );
             $('#validProgram').hide();
-        }
- catch (err) {
+        } catch (err) {
             setInvalid($.i18n("tokenCreationError"), err,
                 $.i18n("contactForAssistance", data.intro.program_admin_contact));
         }
