@@ -559,6 +559,14 @@
         return truncatedRandomString;
      }
 
+     const _isTester = function(connectUrl) {
+        const param_tester = new URL(connectUrl).searchParams.get("tester");
+        if (param_tester && param_tester == "true") {
+            return true;
+        }
+        return false;
+     }
+
       var curr_lang = "en"; // Default language is set to English
       var data;
       var STUDY_NAME;
@@ -635,7 +643,8 @@
         try {
             const SUB_GROUP = _getSubGroup(window.location);
             const RANDOM_STRING = _getRandomString(32);
-            const GEN_TOKEN = `nrelop_${STUDY_NAME}_${SUB_GROUP}_${RANDOM_STRING}`
+            const IS_TESTER = _isTester(window.location);
+            const GEN_TOKEN = IS_TESTER? `nrelop_${STUDY_NAME}_${SUB_GROUP}_test_${RANDOM_STRING}` : `nrelop_${STUDY_NAME}_${SUB_GROUP}_${RANDOM_STRING}`
             const JOIN_CODE = `nrelopenpath://login_token?token=${GEN_TOKEN}&source=github`
             // Generate study-join QR code
             var qrcode = new QRCode(document.getElementById("qrcode"), {
