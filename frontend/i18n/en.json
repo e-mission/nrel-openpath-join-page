@@ -74,5 +74,7 @@
     "pageLoadError": "Error loading page elements",
     "tokenCreationError": "Error creating opcode token",
     "contactForAssistance": "Please contact $1 for assistance",
-    "invalidSubgroupError": "Subgroup $1 not found in list $2"
+    "invalidSubgroupError": "Subgroup $1 not found in list $2",
+    "errorCopyingToClipboard": "Error copying to clipboard",
+    "errorLoadingPageElements": "Error loading page elements"
 }
