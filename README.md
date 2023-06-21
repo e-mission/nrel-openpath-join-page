@@ -10,10 +10,7 @@ So the steps are:
 
 #### Customize the config file
 
-If you wish to test a config file, either find or create it, then alter the CONFIG_URL to the appropriate place, should be similar to:
-```
-https://raw.githubusercontent.com/{user/repo/branch}/configs/{name_of_study}.nrel-op.json
-```
+If you wish to test a config file, either find or create it, then alter the ```CONFIG_URL``` to the appropriate place, should be similar to:```https://raw.githubusercontent.com/{user/repo/branch}/configs/{name_of_study}.nrel-op.json```
 
 #### Launch dev environment
 
