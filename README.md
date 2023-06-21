@@ -12,7 +12,7 @@ So the steps are:
 
 If you wish to test a config file, either find or create it, then alter the CONFIG_URL to the appropriate place, should be similar to:
 ```
-https://raw.githubusercontent.com/{user/repo/branch}/configs{name of study to test}.nrel-op.json
+https://raw.githubusercontent.com/{user/repo/branch}/configs/{name_of_study}.nrel-op.json
 ```
 
 #### Launch dev environment
