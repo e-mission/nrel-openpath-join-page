@@ -8,6 +8,10 @@ We use docker images for the software dependencies since we will not be modifyin
 
 So the steps are:
 
+#### Customize the config file
+
+If you wish to test a config file, either find or create it, then alter the CONFIG_URL to the appropriate place eg. "https://raw.githubusercontent.com/{user/repo/branch}/configs{name of study to test}.nrel-op.json"
+
 #### Launch dev environment
 
 ```
