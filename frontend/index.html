@@ -828,6 +828,7 @@
             } else {
                 hideTokenAndURL();
             }
+            // only place I've been able to ensure the right data exists before proceeding
             SUPPORTED_LANGUAGES = getSupportedLanguages();
             redisplayPage();
         }).catch((error) => setInvalid($.i18n("errorLoadingPageElements"),
@@ -839,6 +840,8 @@
 
         // BEGIN: Second round of loading
         // then, we load all the other languages
+        // want this to be accurate to the ones from the config, not sure how to enforce
+        // SUPPORTED_LANGUAGES = getSupportedLanguages(); --- data from config not ready yet!
         const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
         const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n/'+l+'.json', l));
         console.log("Second round promises of length ", otherI18nLoadPromises.length,
