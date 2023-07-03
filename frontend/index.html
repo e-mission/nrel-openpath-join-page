@@ -569,32 +569,40 @@
         return false;
      }
 
-     const makeLanguageMenu = function()
+     /*
+     function to populate the language menu
+     takes list of supported languages (from config) 
+     and a map from language codes to their names (from i18n.json files)
+     */
+     const makeLanguageMenu = function(languages, map)
      {
-        //supported languages
-        const LANGUAGE_SETTINGS = data.intro.translated_text;
-        const SUPPORTED_LANGUAGES = [];
-        console.log("data?", LANGUAGE_SETTINGS);
+        console.log("data?", languages, map);
         const language_list_element = document.querySelector("#langSel");
         language_list_element.innerHTML = "";
-        for(key in LANGUAGE_SETTINGS)
+        for(let i = 0; i < languages.length; i++)
         {
-          SUPPORTED_LANGUAGES.push(key);
-          console.log("language", key);
+          lang = languages[i];
+          console.log("language", lang);
           const lang_opt = document.createElement("option");
           lang_opt.classList.add("boxOption");
-          lang_opt.setAttribute("value", key);
-          lang_opt.textContent = key;
+          lang_opt.setAttribute("value", lang);
+          if(map){
+            console.log(map[lang]);
+            lang_opt.textContent = map[lang];
+          }
+          else{
+            lang_opt.textContent = languages[i];
+          }
+
           language_list_element.appendChild(lang_opt);
         }
-
-        return SUPPORTED_LANGUAGES;
      }
 
       var curr_lang = "en"; // Default language is set to English
       var data;
       var STUDY_NAME;
       var OPCODE_AUTOGEN;
+      var SUPPORTED_LANGUAGES;
 
       const fillDynamicConfig = function() {
         // Title card
@@ -727,6 +735,44 @@
       }
 
       /*
+      function to make language code to language name maps
+      takes in the list of languages a map is desired for
+      returns a mapping object - key/val pairs
+      */
+      const makeKeyNameMap = function (lang_list)
+      {
+        console.log("map keys", lang_list);
+        var langMap = {};
+        for(let i = 0; i < lang_list.length; i++)
+        {
+          const key = lang_list[i];
+          $.i18n().locale = key;
+          langMap[key] = $.i18n("_language_name");
+        }
+        console.log("map", langMap);
+        $.i18n().locale = curr_lang;
+        return langMap;
+      }
+
+      /*
+      scrapes lanauges supported from dynamic config
+      used to populate options in the menu
+      */
+      const getSupportedLanguages = function()
+      {
+        const LANGUAGE_SETTINGS = data.intro.translated_text;
+        const SUPPORTED_LANGUAGES = [];
+        // console.log("data object", LANGUAGE_SETTINGS);
+        for(key in LANGUAGE_SETTINGS)
+        {
+          SUPPORTED_LANGUAGES.push(key);
+        }
+        // console.log("languages", SUPPORTED_LANGUAGES);
+
+        return SUPPORTED_LANGUAGES;
+      }
+
+      /*
        * We have two async loads - one of the dynamic config and the other of
        * the i18n. Right now, they are launched at different times, which makes
        * it hard to synchronize them. This is even more important when we want
@@ -749,7 +795,6 @@
       $(document).ready(function() {
         STUDY_NAME = _getStudyName(window.location);
         const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
-
         // set the initial value to the current language
         // otherwise, if the dropdown is set to es and we reload the page, the
         // text changes to en, but the dropdown stays as es
@@ -759,8 +804,8 @@
         
         $('#langSel').val(curr_lang);
         //assuming all languages in i18n folder are possible
-        //used to be all the langs from the menu, but that's dynamic now
-        var SUPPORTED_LANGUAGES = ["en", "es", "lo"];
+        //used to be all the langs from the menu, but that's dynamic now, and not loaded yet
+        SUPPORTED_LANGUAGES = ["en", "es", "lo"];
         console.log("Based on the list, languages are ", SUPPORTED_LANGUAGES);
 
         // Start out by assuming a valid study
@@ -786,7 +831,12 @@
             } else {
                 hideTokenAndURL();
             }
-            SUPPORTED_LANGUAGES = makeLanguageMenu(); //only once, to keep menu working
+            //supported languages are gotten here 
+            //because of data (dynamic config info) being in scope
+            SUPPORTED_LANGUAGES = getSupportedLanguages();
+            console.log("from config, languages are:", SUPPORTED_LANGUAGES);
+            //by calling the menu here, it prevents creation of options for other languages
+            makeLanguageMenu(SUPPORTED_LANGUAGES);
             redisplayPage();
         }).catch((error) => setInvalid($.i18n("errorLoadingPageElements"),
             error, $.i18n("contactForAssistance", "k.shankari@nrel.gov")));
@@ -795,6 +845,7 @@
         // available to display.
         // END: First round of loading
 
+        console.log("ahh scope?", SUPPORTED_LANGUAGES);
         // BEGIN: Second round of loading
         // then, we load all the other languages
         const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
@@ -811,6 +862,10 @@
         // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
         Promise.all(otherI18nLoadPromises).then(() => {
             console.log("Finished loading other languages "+toLoadLanguages);
+            //now that all i18n have been loaded, get map
+            const langToName = makeKeyNameMap(SUPPORTED_LANGUAGES);
+            // populate the menu! (could be delayed if lots of languages?)
+            makeLanguageMenu(SUPPORTED_LANGUAGES, langToName);
             $('#langSel').prop('disabled', false);
         });
         // END: Second round of loading
