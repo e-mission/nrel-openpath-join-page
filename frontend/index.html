@@ -179,11 +179,6 @@
       <div class="lead">
         <select name="Select language" id="langSel" class="language box custom-select sources" onchange="setLangAndRedisplayPage()" disabled>
           <!-- now being generated in script! -->
-          <!-- <option class="boxOption" value="en">English</option>;
-          <option class="boxOption" value="es">Español</option>;
-          <option class="boxOption" value="lo">Laos</option>; -->
-          <!-- <option class="boxOption" value="it">Italiano</option>;-->
-          <!-- <option class="boxOption" value="fr">Français</option>;-->  
         </select>
       </div>
 
@@ -573,6 +568,7 @@
      function to populate the language menu
      takes list of supported languages (from config) 
      and a map from language codes to their names (from i18n.json files)
+     reference: https://dev.to/dcodeyt/3-easy-ways-to-generate-html-with-javascript-3b1j (adapted 1st way)
      */
      const makeLanguageMenu = function(languages, map)
      {
@@ -603,6 +599,7 @@
       var STUDY_NAME;
       var OPCODE_AUTOGEN;
       var SUPPORTED_LANGUAGES;
+      var LANG_TO_NAME;
 
       const fillDynamicConfig = function() {
         // Title card
@@ -767,7 +764,7 @@
         {
           SUPPORTED_LANGUAGES.push(key);
         }
-        // console.log("languages", SUPPORTED_LANGUAGES);
+        console.log("languages", SUPPORTED_LANGUAGES);
 
         return SUPPORTED_LANGUAGES;
       }
@@ -831,12 +828,7 @@
             } else {
                 hideTokenAndURL();
             }
-            //supported languages are gotten here 
-            //because of data (dynamic config info) being in scope
             SUPPORTED_LANGUAGES = getSupportedLanguages();
-            console.log("from config, languages are:", SUPPORTED_LANGUAGES);
-            //by calling the menu here, it prevents creation of options for other languages
-            makeLanguageMenu(SUPPORTED_LANGUAGES);
             redisplayPage();
         }).catch((error) => setInvalid($.i18n("errorLoadingPageElements"),
             error, $.i18n("contactForAssistance", "k.shankari@nrel.gov")));
@@ -845,7 +837,6 @@
         // available to display.
         // END: First round of loading
 
-        console.log("ahh scope?", SUPPORTED_LANGUAGES);
         // BEGIN: Second round of loading
         // then, we load all the other languages
         const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
@@ -863,9 +854,9 @@
         Promise.all(otherI18nLoadPromises).then(() => {
             console.log("Finished loading other languages "+toLoadLanguages);
             //now that all i18n have been loaded, get map
-            const langToName = makeKeyNameMap(SUPPORTED_LANGUAGES);
+            LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
             // populate the menu! (could be delayed if lots of languages?)
-            makeLanguageMenu(SUPPORTED_LANGUAGES, langToName);
+            makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
             $('#langSel').prop('disabled', false);
         });
         // END: Second round of loading
