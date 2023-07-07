@@ -800,10 +800,6 @@
         // https://stackoverflow.com/a/16979926/4040267
         
         $('#langSel').val(curr_lang);
-        //assuming all languages in i18n folder are possible
-        //used to be all the langs from the menu, but that's dynamic now, and not loaded yet
-        SUPPORTED_LANGUAGES = ["en", "es", "lo"];
-        console.log("Based on the list, languages are ", SUPPORTED_LANGUAGES);
 
         // Start out by assuming a valid study
         $('#invalidStudy').hide();
