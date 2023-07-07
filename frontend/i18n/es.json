@@ -1,12 +1,12 @@
 {
-	"_language_name": "Español",
 	"@metadata": {
 		"authors": [
 			"Diego Colón Dávila",
 			"Sebastian D Sanchez Castellanos"
 		],
 		"last-updated": "2022-12-30",
-		"locale": "es"
+		"locale": "es",
+		"language_name": "Español"
 	},
 
 	"joinPage":"Pagina Inicial",

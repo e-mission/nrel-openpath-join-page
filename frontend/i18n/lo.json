@@ -1,5 +1,4 @@
 {
-	"_language_name": "ລາວ",
 	"@metadata": {
 		"authors": [
 			"Phetphouxay Khamchanh",
@@ -7,7 +6,8 @@
 			"Siphachanh Thythavy"
 		],
 		"last-updated": "2022-12-30",
-		"locale": "lo"
+		"locale": "lo",
+		"language_name": "ລາວ"
 	},
 
 	"joinPage":"ໜ້າທີ່ຈະເຂົ້າ",
