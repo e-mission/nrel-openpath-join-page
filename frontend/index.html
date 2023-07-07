@@ -790,7 +790,7 @@
       // Enable debug
       $.i18n.debug = true;
 
-      $(document).ready(function() {
+      $(document).ready(async function() {
         STUDY_NAME = _getStudyName(window.location);
         const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
         // set the initial value to the current language
@@ -807,7 +807,7 @@
 
 
         //async - await being used since language depends heavily on dynamic config
-        async function f() {
+        
           //load the dynamic config
           const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
           console.log("Dynamic Config Promise", dynamicLoadPromise);
@@ -858,8 +858,7 @@
           LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
           makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
           $('#langSel').prop('disabled', false); //ready to go, enable the menu
-        }
-        //f();
+
 
         // // BEGIN: First round of loading
         // const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
