@@ -594,7 +594,7 @@
         }
      }
 
-      var curr_lang; // Default language is set to English
+      var curr_lang; //language not set until dynamic config is loaded! (dynamic default)
       var data;
       var STUDY_NAME;
       var OPCODE_AUTOGEN;
@@ -738,17 +738,15 @@
       */
       const makeKeyNameMap = function (lang_list)
       {
-        console.log("map keys", lang_list);
         var langMap = {};
         for(let i = 0; i < lang_list.length; i++)
         {
           const key = lang_list[i];
-          console.log("key to lang", key);
           $.i18n().locale = key;
           langMap[key] = $.i18n('language_name');
         }
-        console.log("map", langMap);
-        $.i18n().locale = curr_lang;
+        //console.log("map", langMap);
+        $.i18n().locale = curr_lang; //resetting the language to what's selected
         return langMap;
       }
 
@@ -760,7 +758,6 @@
       {
         const LANGUAGE_SETTINGS = data.intro.translated_text;
         const SUPPORTED_LANGUAGES = [];
-        // console.log("data object", LANGUAGE_SETTINGS);
         for(key in LANGUAGE_SETTINGS)
         {
           SUPPORTED_LANGUAGES.push(key);
@@ -797,10 +794,8 @@
         // otherwise, if the dropdown is set to es and we reload the page, the
         // text changes to en, but the dropdown stays as es
         // we use the non-changing version of the selection because we don't
-        // want to redisplay the text twice
+        // want to redisplay the text twice --- oooh is this our problem?
         // https://stackoverflow.com/a/16979926/4040267
-        
-        // $('#langSel').val(curr_lang);
 
         // Start out by assuming a valid study
         $('#invalidStudy').hide();
@@ -808,116 +803,62 @@
 
         //async - await being used since language depends heavily on dynamic config
         
-          //load the dynamic config
-          const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
-          console.log("Dynamic Config Promise", dynamicLoadPromise);
-          data = await dynamicLoadPromise; //don't continue until data is defined and config is loaded
-          console.log("Dynamic Config result is", data);
+        //load the dynamic config
+        const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
+        console.log("Dynamic Config Promise", dynamicLoadPromise);
+        data = await dynamicLoadPromise; 
+        //don't continue until data is defined and config is loaded
+        console.log("Dynamic Config result is", data);
 
-          //handle parts that rely on dynamic config
-          OPCODE_AUTOGEN = data.opcode?.autogen || data.intro.program_or_study == "study";
-            if (OPCODE_AUTOGEN) {
-                validateAndGenerateToken();
-            } else {
-                hideTokenAndURL();
-            }
-          SUPPORTED_LANGUAGES = getSupportedLanguages();
+        //create token and token url
+        OPCODE_AUTOGEN = data.opcode?.autogen || data.intro.program_or_study == "study";
+        if (OPCODE_AUTOGEN) {
+          validateAndGenerateToken();
+        } else {
+          hideTokenAndURL();
+        }
+        SUPPORTED_LANGUAGES = getSupportedLanguages();
 
-          //load the default (first listed in translated) language
-          const default_language = SUPPORTED_LANGUAGES[0];//default should be set up to be the first language!
-          console.log("language default is", default_language);
-          curr_lang=default_language;
-          $('#langSel').val(default_language);
-          // i18n.load returns a jquery promise, but apparently, since jquery3,
-          // they are ES2015 compatible, so we don't need to wrap them
-          // also we first load only the default language, so we can display the page ASAP
-          const defaultI18nLoadPromise = $.i18n().load('i18n/'+default_language+'.json', default_language);
-          console.log("Default i18n Promise", defaultI18nLoadPromise); //supposed to be undefined? works and looks undefined in the original code?
-          const i18nLoadResult = await defaultI18nLoadPromise;
-          console.log("Default i18n result is", i18nLoadResult);
+        //load the default (first listed in translated) language
+        const default_language = SUPPORTED_LANGUAGES[0];//default should be set up to be the first language!
+        console.log("language default is", default_language);
+        curr_lang = default_language;
+          
+        // i18n.load returns a jquery promise, but apparently, since jquery3,
+        // they are ES2015 compatible, so we don't need to wrap them
+        // also we first load only the default language, so we can display the page ASAP
+        const defaultI18nLoadPromise = $.i18n().load('i18n/'+default_language+'.json', default_language);
+        console.log("Default i18n Promise", defaultI18nLoadPromise); //supposed to be undefined? works and looks undefined in the original code?
+        const i18nLoadResult = await defaultI18nLoadPromise;
+        console.log("Default i18n result is", i18nLoadResult);
 
-          //show the page now that we have sufficent information!
-          redisplayPage();
+        $('#langSel').val(default_language);
 
-          //load the rest of the languages
-          const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
-          const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n/'+l+'.json', l));
-          console.log("Second round promises of length ", otherI18nLoadPromises.length,
+        //show the page now that we have sufficent information!
+        redisplayPage();
+        
+        //determined that traditional promise was working better than the await...
+        const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
+        const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n/'+l+'.json', l));
+        console.log("Second round promises of length ", otherI18nLoadPromises.length,
             " to load ", toLoadLanguages);
-          // we are just pre-loading the other languages in case the user selects them
-          // if we have too many languages, we might actually want to remove the preload
-          // and keep it lazy
-          // since we are preloading, all we want to do once the load is done is to
-          // enable the language dropdown
-          // Note that the dropdown is disabled by default
-          // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
-          const otherLanguageResult = await otherI18nLoadPromises;
-          console.log("done loading additional languaes", otherLanguageResult);
 
-          //map language keys to names (in their files) and display meu
-          LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
-          makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
-          $('#langSel').prop('disabled', false); //ready to go, enable the menu
-
-
-        // // BEGIN: First round of loading
-        // const dynamicLoadPromise = fetch(CONFIG_URL).then((resp) => resp.json());
-        // // i18n.load returns a jquery promise, but apparently, since jquery3,
-        // // they are ES2015 compatible, so we don't need to wrap them
-        // // also we first load only the default language, so we can display the page ASAP
-        // curr_lang = "en";
-        // const i18nLoadPromise = $.i18n().load('i18n/'+curr_lang+'.json', curr_lang);
-        // const allAsyncLoadPromises = [i18nLoadPromise, dynamicLoadPromise];
-        // console.log("First round promises", allAsyncLoadPromises);
-
-        // Promise.all(allAsyncLoadPromises).then(([i18nLoadResult, dynamicLoadResult]) => {
-        //     console.log("Async results are ", i18nLoadResult, dynamicLoadResult);
-        //     console.log("first promise should give", i18nLoadResult);
-        //     data = dynamicLoadResult;
-        //     // TODO: Remove backwards compatibility at the end of 2024, once all
-        //     // current programs have completed
-        //     OPCODE_AUTOGEN = data.opcode?.autogen || data.intro.program_or_study == "study";
-        //     if (OPCODE_AUTOGEN) {
-        //         validateAndGenerateToken();
-        //     } else {
-        //         hideTokenAndURL();
-        //     }
-        //     // only place I've been able to ensure the right data exists before proceeding
-        //     SUPPORTED_LANGUAGES = getSupportedLanguages();
-        //     redisplayPage();
-        // }).catch((error) => setInvalid($.i18n("errorLoadingPageElements"),
-        //     error, $.i18n("contactForAssistance", "k.shankari@nrel.gov")));
-        // // the error elements are hardcoded here because we may have an error
-        // // in loading the i18n, in which case we will not have i18n-ized text
-        // // available to display.
-        // // END: First round of loading
-
-        // // BEGIN: Second round of loading
-        // // then, we load all the other languages
-        // // want this to be accurate to the ones from the config, not sure how to enforce
-        // // SUPPORTED_LANGUAGES = getSupportedLanguages(); --- data from config not ready yet!
-        // SUPPORTED_LANGUAGES = ["en", "es", "lo"];
-        // const toLoadLanguages = SUPPORTED_LANGUAGES.filter((l) => l != curr_lang);
-        // const otherI18nLoadPromises = toLoadLanguages.map((l) => $.i18n().load('i18n/'+l+'.json', l));
-        // console.log("Second round promises of length ", otherI18nLoadPromises.length,
-        //     " to load ", toLoadLanguages);
-
-        // // we are just pre-loading the other languages in case the user selects them
-        // // if we have too many languages, we might actually want to remove the preload
-        // // and keep it lazy
-        // // since we are preloading, all we want to do once the load is done is to
-        // // enable the language dropdown
-        // // Note that the dropdown is disabled by default
-        // // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
-        // Promise.all(otherI18nLoadPromises).then(() => {
-        //     console.log("Finished loading other languages "+toLoadLanguages);
-        //     //now that all i18n have been loaded, get map
-        //     LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
-        //     // populate the menu! (could be delayed if lots of languages?)
-        //     makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
-        //     $('#langSel').prop('disabled', false);
-        // });
-        // // END: Second round of loading
+        // we are just pre-loading the other languages in case the user selects them
+        // if we have too many languages, we might actually want to remove the preload
+        // and keep it lazy
+        // since we are preloading, all we want to do once the load is done is to
+        // enable the language dropdown
+        // Note that the dropdown is disabled by default
+        // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
+        Promise.all(otherI18nLoadPromises).then(() => {
+            console.log("Finished loading other languages "+toLoadLanguages);
+            // setTimeout(() => {  console.log("waited!"); }, 5000);
+            //now that all i18n have been loaded, get map
+            LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
+            // populate the menu! (could be delayed if lots of languages?)
+            makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
+            $('#langSel').prop('disabled', false);
+        });
       });
 
 		</script>
