@@ -5,9 +5,11 @@
 			"Sebastian D Sanchez Castellanos"
 		],
 		"last-updated": "2022-12-30",
-		"locale": "en"
+		"locale": "en",
+		"language_name": "English"
 	},
 
+	"language_name": "English",
 	"joinPage":"Join Page",
 	"search":"SEARCH",
 	"publicDashboard":"Public Dashboard",
