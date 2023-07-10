@@ -832,8 +832,6 @@
         const i18nLoadResult = await defaultI18nLoadPromise;
         console.log("Default i18n result is", i18nLoadResult);
 
-        $('#langSel').val(default_language);
-
         //show the page now that we have sufficent information!
         redisplayPage();
         
@@ -858,6 +856,7 @@
             // populate the menu! (could be delayed if lots of languages?)
             makeLanguageMenu(SUPPORTED_LANGUAGES, LANG_TO_NAME);
             $('#langSel').prop('disabled', false);
+            $('#langSel').val(default_language); //setting the menu value to the default language
         });
       });
 
