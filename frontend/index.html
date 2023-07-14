@@ -833,6 +833,7 @@
         console.log("Default i18n result is", i18nLoadResult);
 
         //show the page now that we have sufficent information!
+        $.i18n().locale = default_language;
         redisplayPage();
         
         //determined that traditional promise was working better than the await...
@@ -850,7 +851,6 @@
         // https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
         Promise.all(otherI18nLoadPromises).then(() => {
             console.log("Finished loading other languages "+toLoadLanguages);
-            // setTimeout(() => {  console.log("waited!"); }, 5000);
             //now that all i18n have been loaded, get map
             LANG_TO_NAME = makeKeyNameMap(SUPPORTED_LANGUAGES);
             // populate the menu! (could be delayed if lots of languages?)
