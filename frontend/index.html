@@ -812,7 +812,12 @@
         console.log("Dynamic Config result is", data);
 
         //create token and token url
-        OPCODE_AUTOGEN = data.opcode?.autogen || data.intro.program_or_study == "study";
+        if(data.opcode?.autogen) { //if the autogen property is set, use it
+          OPCODE_AUTOGEN = data.opcode?.autogen;
+        } else { //else fall back to program vs study
+          OPCODE_AUTOGEN = data.intro.program_or_study == "study";
+        }
+        
         if (OPCODE_AUTOGEN) {
           validateAndGenerateToken();
         } else {
