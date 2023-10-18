@@ -5,5 +5,8 @@ WORKDIR /public
 
 RUN npm i -g http-server
 
+RUN apk update && apk upgrade busybox
+RUN npm update -g
+
 EXPOSE 5050
 CMD ["http-server", "-p", "5050"]
