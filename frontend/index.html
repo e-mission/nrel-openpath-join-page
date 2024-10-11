@@ -300,21 +300,37 @@
                   
                   <h2 data-i18n="joinStudy">Join the Study</h2>
 
-                  <p data-i18n="jS1">After you have installed the NREL OpenPATH app on your phone, join the study by scanning
-                     the QR code or visiting the link below using your phone.
-                  </p>
+                  <div class="d-flex flex-column justify-content-center py-2">
+                    <div id="joinQrRow" class="justify-content-center">
+                      <p data-i18n="joinAutogenQrDesc">
+                        After you have installed the NREL OpenPATH app on your phone, join the study by
+                        scanning the QR code or copying the link and pasting it into the app.
+                      </p>
+                      <div id="joinQrCode" class="m-auto" style="width:150px; height:150px"></div>
+                    </div>
+                    <div id="joinButtonRow" class="justify-content-center">
+                      <p data-i18n="joinAutogenButtonDesc">
+                        After you have installed the NREL OpenPATH app on your phone, join the study
+                        by clicking the button below or copying the link and pasting it into the app.
+                      </p>
+                      <button id="joinButton" class="btn btn-primary">
+                        <b data-i18n="join">Join</b>
+                      </button>
+                    </div>
 
-                  <div class="row justify-content-center">
-                     
-                    <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                    <div class="alert alert-secondary d-flex align-items-center py-1 my-2 mx-auto">
+                      <span id="joinCodeText" class="small text-monospace text-break"></span>
+                      <span class="pl-2 fa fa-copy" id="joinCodeCopy"></span>
+                    </div>
                   </div>
 
-                  <p><span id="opCodeText"></span><span>&nbsp;&nbsp;&nbsp;</span><span class="fa fa-copy" id="opCodeCopy"></span></p>
-
-
-                    <span data-i18n="[html]jS2">You will log in using a randomly token. Save your token in case you lose or
-                      change phones. If you lose your token, NREL cannot retrieve it for you since we do
-                      not have the ability to match a token to an individual user.</span>
+                  <p data-i18n="[html]joinAutogenOpcodeDesc" class="m-0">
+                    When you join the study, you will be randomly assigned an OPcode, which is a
+                    long string beginning with <code>nrelop_</code>. You will be asked to save your
+                    OPcode in case you lose or change phones. If you lose your token, NREL cannot
+                    retrieve it for you since we do not have the ability to match a token to an
+                    individual user.
+                  </p>
 
                </div>
                <div id="validProgram" class="well text-center">
@@ -507,63 +523,26 @@
 
 		<!-- Custom scripts -->
 		<script type="text/javascript">
-      /*
-      * Copied and adapted from the phone `dynamic_config.js`
-      * Adapted by supporting program name via parameter to make it
-      * easier to test against localhost
-      */
-      const _getStudyName = function(connectUrl) {
-        const _getFromParamOrDefault = function() {
-          const param_study_name = new URL(connectUrl).searchParams.get("study_config");
-          return param_study_name == null? "stage-program" : param_study_name;
-        }
-        const orig_host = new URL(connectUrl).hostname;
-        // If we are running this on dev, use a param instead to enable testing
-        if (orig_host == "localhost") { return _getFromParamOrDefault(); }
-        const first_domain = orig_host.split(".")[0];
-        if (first_domain == "openpath-stage") { return _getFromParamOrDefault(); }
-        const openpath_index = first_domain.search("-openpath");
-        if (openpath_index == -1) { return undefined; }
-        const study_name = first_domain.substr(0,openpath_index);
-        return study_name;
+      /**
+       * @returns The study name for a URL, which is:
+       *           - the value of the 'study_config' query parameter if present,
+       *           - the first part of the hostname before '-openpath' if present,
+       *           - 'stage' if the first part of the hostname is 'openpath-stage',
+       *           - undefined if it can't be determined
+       * @example getStudyNameFromUrl(new URL('https://openpath-stage.nrel.gov/join/')) => 'stage'
+       * @example getStudyNameFromUrl(new URL('https://open-access-openpath.nrel.gov/join/')) => 'open-access'
+       * @example getStudyNameFromUrl(new URL('https://nrel-commute-openpath.nrel.gov/api/')) => 'nrel-commute'
+       * @example getStudyNameFromUrl(new URL('http://localhost:3274/?study_config=foo')) => 'foo'
+       */
+      function getStudyNameFromUrl(url) {
+        const studyConfigParam = url.searchParams.get('study_config');
+        if (studyConfigParam) return studyConfigParam;
+        const firstDomain = url.hostname.split('.')[0];
+        if (firstDomain == 'openpath-stage') return 'stage';
+        const openpathSuffixIndex = firstDomain.indexOf('-openpath');
+        if (openpathSuffixIndex == -1) return undefined;
+        return firstDomain.substring(0, openpathSuffixIndex);
       }
-
-
-      const _getSubGroup = function(connectUrl) {
-        const param_subgroup_name = new URL(connectUrl).searchParams.get("sub_group");
-        if (data.opcode?.subgroups?.length > 0) {
-            if (data.opcode.subgroups.includes(param_subgroup_name)) {
-                return param_subgroup_name;
-            } else {
-                throw new Error($.i18n("invalidSubgroupError", param_subgroup_name,
-                    data.opcode.subgroups),
-                    {"cause": {"found": param_subgroup_name,
-                    "expected": data.opcode.subgroups}})
-            }
-        } else {
-            return "default";
-        }
-      }
-
-      // Adapted from https://stackoverflow.com/a/63363662/4040267
-      // made available under a CC BY-SA 4.0 license
-
-      const _getRandomString = function(length) {
-        const randomInts = window.crypto.getRandomValues(new Uint8Array(length * 2));
-        const randomChars = Array.from(randomInts).map((b) => String.fromCharCode(b));
-        const randomString = randomChars.join("");
-        const validRandomString = window.btoa(randomString).replace(/[+/]/g, "");
-        const truncatedRandomString = validRandomString.substring(0, length);
-        return truncatedRandomString;
-     }
-
-     const _isTester = function(connectUrl) {
-        const param_tester = new URL(connectUrl).searchParams.get("tester");
-        if (param_tester && param_tester == "true") {
-            return true;
-        }
-        return false;
-     }
 
      /*
      function to populate the language menu
@@ -595,8 +574,10 @@
         }
      }
 
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       var curr_lang; //language not set until dynamic config is loaded! (dynamic default)
       var data;
+      var PAGE_URL;
       var STUDY_NAME;
       var OPCODE_AUTOGEN;
       var SUPPORTED_LANGUAGES;
@@ -669,43 +650,48 @@
         $('#invalidStudy').show();
       }
 
-      const validateAndGenerateToken = function() {
+      const generateJoinCode = function() {
         try {
-            const SUB_GROUP = _getSubGroup(window.location);
-            const RANDOM_STRING = _getRandomString(32);
-            const IS_TESTER = _isTester(window.location);
-            const GEN_TOKEN = IS_TESTER? `nrelop_${STUDY_NAME}_${SUB_GROUP}_test_${RANDOM_STRING}` : `nrelop_${STUDY_NAME}_${SUB_GROUP}_${RANDOM_STRING}`
-            const JOIN_CODE = `nrelopenpath://login_token?token=${GEN_TOKEN}`
-            // Generate study-join QR code
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-              text: JOIN_CODE,
-              width: 100,
-              height: 100,
-              colorDark : "#000000",
-              colorLight : "#ffffff",
-              correctLevel : QRCode.CorrectLevel.H
-            });
+            const joinUri = new URL(`emission://join?study_config=${STUDY_NAME}`);
+            for (let param of PAGE_URL.searchParams) {
+              joinUri.searchParams.set(...param);
+            }
 
-            // Join study text
-            // JOIN_CODE was already defined above
-            $('#opCodeText').text(GEN_TOKEN)
-            $( '#opCodeCopy').on( "click", function() {
-                navigator.clipboard.writeText(GEN_TOKEN).then(
+            if(isMobile) {
+              $('#joinButton').on("click", () => {
+                  window.location.href = joinUri.href;
+              });
+              $('#joinQrRow').hide();
+            } else {
+              // Generate study-join QR code
+              var qrcode = new QRCode(document.getElementById("joinQrCode"), {
+                text: joinUri.href,
+                width: 150,
+                height: 150,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+              });
+              $('#joinButtonRow').hide();
+            }
+
+            $('#joinCodeText').text(joinUri.href);
+            $('#joinCodeCopy, #joinCodeText').on("click", () => {
+                navigator.clipboard.writeText(joinUri.href).then(
                   () => {
                     // github-style conversion to green check mark and back
                     // after 5 seconds
-                    $( '#opCodeCopy').removeClass("fa-copy");
-                    $( '#opCodeCopy').addClass("fa-check");
-                    $( '#opCodeCopy').css("color", "green");
+                    $( '#joinCodeCopy').removeClass("fa-copy");
+                    $( '#joinCodeCopy').addClass("fa-check");
+                    $( '#joinCodeCopy').css("color", "green");
                     setTimeout(() => {
-                        $( '#opCodeCopy').removeClass("fa-check");
-                        $( '#opCodeCopy').addClass("fa-copy");
-                        $( '#opCodeCopy').css("color", "black");
+                        $( '#joinCodeCopy').removeClass("fa-check");
+                        $( '#joinCodeCopy').addClass("fa-copy");
+                        $( '#joinCodeCopy').css("color", "black");
                     }, 5000);
-                    // alert("Copied opcode "+GEN_TOKEN+" to clipboard");
                   },
                   () => {
-                    alert($.i18n("errorCopyingToClipboard")+": '"+GEN_TOKEN+"'");
+                    alert($.i18n("errorCopyingToClipboard")+": '"+joinUri.href+"'");
                   }
                 );
             } );
@@ -789,7 +775,8 @@
       $.i18n.debug = true;
 
       $(document).ready(async function() {
-        STUDY_NAME = _getStudyName(window.location);
+        PAGE_URL = new URL(window.location);
+        STUDY_NAME = getStudyNameFromUrl(PAGE_URL) || 'stage-program';
         const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
         // set the initial value to the current language
         // otherwise, if the dropdown is set to es and we reload the page, the
@@ -821,7 +808,7 @@
         }
 
         if (OPCODE_AUTOGEN) {
-          validateAndGenerateToken();
+          generateJoinCode();
         } else {
           hideTokenAndURL();
         }
