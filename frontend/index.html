@@ -667,6 +667,7 @@
             if(isMobile) {
               $('#joinButton').on("click", () => {
                   window.location.href = joinUri.href;
+                  setTimeout(() => window.alert($.i18n('joinEnsureAppInstalled')), 100);
               });
               $('#joinQrRow').hide();
             } else {

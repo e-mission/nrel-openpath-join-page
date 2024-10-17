@@ -36,6 +36,7 @@
 	"joinAutogenOpcodeDesc": "When you join the study, you will be randomly assigned an OPcode, which is a long string beginning with <code>nrelop_</code>. You will be asked to save your OPcode in case you lose or change phones. If you lose your token, NREL cannot retrieve it for you since we do not have the ability to match a token to an individual user.",
 	"joinAssignedQrDesc": "After you have installed the NREL OpenPATH app on your phone, join the program by scanning the QR code or copy-pasting the OPcode provided by your program admin. The OPcode is a long string beginning with <code>nrelop_</code>.",
 	"joinAssignedOpcodeDesc": "The OPcode is a randomly generated token. Keep your OPcode in a safe place in case you lose or change phones. If you lose your OPcode, please contact your program admin for assistance. NREL cannot retrieve it for you since we do not have the ability to match a token to an individual user.",
+  "joinEnsureAppInstalled": "If the app does not automatically launch, please ensure it is installed (instructions above) and try again.",
 	"dataPrivacy":"Data Privacy and Security",
 	"dP1":"The system",
 	"dP2":" will not ",

@@ -36,6 +36,7 @@
   "joinAutogenOpcodeDesc": "Cuando se una al estudio, se le asignará aleatoriamente un OPcode, que es una cadena larga que comienza con <code>nrelop_</code>. Se le pedirá que guarde su OPcode en caso de que pierda o cambie de teléfono. Si pierde su token, NREL no puede recuperarlo para usted ya que no tenemos la capacidad de hacer coincidir un token con un usuario individual.",
   "joinAssignedQrDesc": "Después de haber instalado la aplicación NREL OpenPATH en su teléfono, únase al programa escaneando el código QR o copiando y pegando el OPcode proporcionado por el administrador de su programa. El OPcode es una cadena larga que comienza con <code>nrelop_</code>.",
   "joinAssignedOpcodeDesc": "El OPcode es un token generado aleatoriamente. Guarde su OPcode en un lugar seguro en caso de que pierda o cambie de teléfono. Si pierde su OPcode, comuníquese con el administrador de su programa para obtener ayuda. NREL no puede recuperarlo porque no tenemos la capacidad de hacer coincidir un token para un usuario individual.",
+  "joinEnsureAppInstalled": "Si la aplicación no se inicia automáticamente, asegúrese de que esté instalada (instrucciones arriba) e inténtelo de nuevo.",
 	"dataPrivacy":"Privacidad y seguridad de los datos",
 	"dP1":"El sistema",
 	"dP2":" no ",
