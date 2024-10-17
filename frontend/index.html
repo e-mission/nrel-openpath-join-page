@@ -659,7 +659,7 @@
 
       const generateJoinCode = function() {
         try {
-            const joinUri = new URL(`emission://join?study_config=${STUDY_NAME}`);
+            const joinUri = new URL(`nrelopenpath://join?study_config=${STUDY_NAME}`);
             for (let param of PAGE_URL.searchParams) {
               joinUri.searchParams.set(...param);
             }
