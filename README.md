@@ -30,5 +30,5 @@ If customizing the config file, go to http://localhost:3274/?study_config=[your_
 
 ### Design decisions
 
-This join page is designed to work as a flexible, dynamic join page for any new Studies that may be added to support OpenPATH.
+This join page is designed to work as a flexible, dynamic join page for any new studies that may be added to support OpenPATH.
 The join-pages will be based off of the data within the config files in [nrel-openpath-deploy-configs](https://github.com/e-mission/nrel-openpath-deploy-configs)
