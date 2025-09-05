@@ -1,6 +1,6 @@
 # A generic join page for NREL OpenPATH studies and programs
 
-**Issues:** Since this repository is part of a larger project, all issues are tracked in the central docs repository. If you have a question, as suggested by the open source guide, please file an issue instead of sending an email. Since issues are public, other contributors can try to answer the question and benefit from the answer.
+**Issues:** Since this repository is part of a larger project, all issues are tracked in the central docs repository (https://github.com/e-mission). If you have a question, as suggested by the open source guide, please file an issue instead of sending an email. Since issues are public, other contributors can try to answer the question and benefit from the answer.
 
 ## Development
 
