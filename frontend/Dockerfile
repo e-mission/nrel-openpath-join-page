@@ -1,4 +1,4 @@
-FROM node:24.7.0-alpine3.22
+FROM node:25.11.1-alpine3.22
 
 RUN mkdir -p /public
 WORKDIR /public
