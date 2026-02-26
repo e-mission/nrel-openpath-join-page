@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="en" dir="ltr">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; default-src 'self' 'unsafe-inline' data: https://raw.githubusercontent.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com https://fonts.googleapis.com/ https://fonts.gstatic.com https://cdnjs.cloudflare.com https://code.jquery.com https://kit.fontawesome.com https://ka-f.fontawesome.com;">
-		<title>NREL CanBikeCO Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--meta http-equiv="Content-Security-Policy" content="
+          default-src 'self' data:;
+          script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://kit.fontawesome.com;
+          style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net 'unsafe-inline';
+          font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com;
+          connect-src 'self' https://ka-f.fontawesome.com;" -->
+        
+		<title>Application Title | NLR</title>
 
 		<!-- == APPLICATION HEAD == -->
 		<!-- Google Tag Manager -->
@@ -17,6 +23,9 @@
 		<!-- Search engine code -->
 		<!--#config timefmt="%Y-%m-%d@%H:%M:%S %Z" -->
 		<meta http-equiv="last-modified" content="<!--#echo var='LAST_MODIFIED'-->">
+        
+        <!-- ShareThis -->
+		<script src="https://platform-api.sharethis.com/js/sharethis.js#property=64bee650c73e910012491844&product=inline-share-buttons&amp;source=platform" async="async"></script>
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -29,17 +38,17 @@
 
 		<!-- GLOBAL styles -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<link href="client/css/nrel.complete.min.css" rel="stylesheet" type="text/css" >
+		<link href="client/css/nrel.complete.css" rel="stylesheet" type="text/css" >
 
-		<!-- NREL Application styles -->
-		<link href="client/css/nrel.application.min.css" rel="stylesheet" type="text/css" >
+		<!-- NLR Application styles -->
+		<link href="client/css/nrel.application.css" rel="stylesheet" type="text/css" >
 
 		<!-- Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
 
 		<!-- Font Awesome -->
-		<script src="https://kit.fontawesome.com/32f532493a.js" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/064330cea8.js" crossorigin="anonymous"></script>
 
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="   crossorigin="anonymous"></script>
@@ -76,59 +85,56 @@
 	</head>
 	<body>
 
-    <!-- Google Tag Manager (noscript) -->
+		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KG7PVKB"
-              height="0" width="0" style="display:none;visibility:hidden" sandbox="allow-same-origin"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+						  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 
-    <!-- Site application banner -->
-    <!--stopindex-->
-    <a href="#content" class="sr-only app">Skip to main content</a>
+		<!-- Site application banner -->
+		<!--stopindex-->
+		<a href="#content" class="sr-only app">Skip to main content</a>
 
-    <header id="banner">
-    <div class="banner-logo">
-    <div class="container app">
-      <div class="row">
+		<header id="banner">
+			<div class="banner-logo">
+				<div class="container app">
+					<div class="row align-items-center">
 
-        <div class="col-md-6 col-xl-4 order-md-2">
-          <a href="http://www.nrel.gov"><div class="logo"><img src="client/img/nrel-logo-web.svg" height="100%" width="100%" alt="National Renewable Energy Laboratory" /></div></a>
-        </div>
+						<div class="col-md-6 col-xl-4 order-md-2">
+							<a href="https://www.nlr.gov"><div class="logo"><img src="client/img/nlr.png" class="sr-only" alt="National Laboratory of the Rockies"></div></a>
+						</div>
 
-        <div class="col-12 d-md-none">
-          <!-- Start MOBILE collapsible site search bar -->
-          <div class="site-search-bar">
-            <div class="container">
-              <div class="row">
-                <div class="col d-flex justify-content-center">
-                  <nav class="navbar navbar-light">
-                    <div class="navbar-collapse collapse" id="searchbar-collapse-mobile">
-                      <form
-                          method="get"
-                          class="site-searchbar-form form-inline ThunderstoneForm"
-                          action="https://search4.nrel.gov/texis/search/" 
-                          id="ThunderstoneSearchForm">
-
-                        <input type="hidden" name="pr" value="metanrel" />
-                        <div class="form-group">
-                            <label for="query" class="searchFiler sr-only">NREL.gov</label>
-                            <input
-                                type="search"
-                                id="query" name="query"
-                                maxlength="2047"
-                                placeholder="NREL.gov"
-                                class="form-control"
-                                aria-label="NREL.gov">
-                            <button type="submit" class="search btn btn-default">Search</button>
-                        </div>
-                      </form>
-                    </div>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>    
-          <!-- End MOBILE collapsible site search bar -->
-        </div>
+						<div class="col-12 d-md-none">
+							<!-- MOBILE collapsible site search bar -->
+                            <div class="site-search-bar">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-center mb-1">
+                                            <nav class="navbar navbar-light" aria-label="Site search">
+                                                <div id="searchbar-collapse-mobile" class="navbar-collapse collapse">
+                                                    <form
+                                                          method="get"
+                                                          class="site-searchbar-form form-inline"
+                                                          action="/search" 
+                                                          id="site-search-form-mobile">
+                                                        <div class="form-group">
+                                                            <label for="querymobile" class="sr-only">Search</label>
+                                                            <input
+                                                                   type="search"
+                                                                   id="querymobile" name="query"
+                                                                   maxlength="2047"
+                                                                   placeholder="Search"
+                                                                   class="form-control">
+                                                            <button type="submit" class="btn btn-default">Search</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                            <!-- End MOBILE collapsible site search bar -->
+						</div>
 
         <div class="d-flex align-items-center col-md-6 col-xl-8 order-md-1">
           <a class="app-name d-flex flex-wrap my-2">
@@ -136,98 +142,91 @@
             <span class="app-name">:&nbsp;</span>
             <span data-i18n="joinPage" class="app-name">Join Page</span>
           </a>
-        </div>
+						</div>
 
-      </div>
-    </div>
-    </div>
-    </header>
-    <!--startindex-->
+					</div>
+				</div>
+			</div>
+		</header>
+		<!--startindex-->
 
 
-    <!-- TOP NAVIGATION -->
-    <!--stopindex-->
-    <div class="program-header">
-    <div class="container">
-    <nav class="navbar navbar-expand-md navbar-light">
+		<!-- TOP NAVIGATION -->
+		<!--stopindex-->
+		<div class="program-header">
+			<div class="container">
+				<nav class="navbar navbar-expand-md navbar-light" aria-label="Main">
 
-      <div id="program-menu" class="mr-auto">
-        <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#topnav-collapse" aria-controls="topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggle-label">Menu</span>
-        </button>
-      </div>
+					<div id="program-menu" class="mr-auto">
+						<button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#topnav-collapse" aria-controls="topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+							<span class="navbar-toggle-label">Menu</span>
+						</button>
+					</div>
 
-      <!-- Navigation -->
-      <div class="navbar-collapse collapse" id="topnav-collapse">
-        
-        <ul class="nav navbar-nav">
+					<!-- Navigation -->
+					<div class="navbar-collapse collapse" id="topnav-collapse">
+						<ul class="nav navbar-nav">
           <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" data-i18n="publicDashboard" class="nav-link">Public Dashboard</a></li>
           <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" data-i18n="participantGuidelines" class="nav-link">Participant Guidelines</a></li>
           <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html" data-i18n="tsdc" class="nav-link">TSDC</a></li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
+						</ul>
+						<ul class="nav navbar-nav ml-auto">
           <!--Navigation tabs are commented out for reference
-          <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
+							<li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+							<li class="nav-item"><a href="#" class="nav-link">Help</a></li>
           -->
-        </ul>
-        <!-- desktop search button -->
-        <button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-none d-md-inline" data-toggle="collapse" data-target="#searchbar-collapse" aria-expanded="false" aria-label="Toggle Search">
+						</ul>
+						<!-- desktop search button -->
+						<button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-none d-md-inline" data-toggle="collapse" data-target="#searchbar-collapse" aria-expanded="false" aria-label="Toggle Search">
           <span class="fa fa-search" aria-hidden="true"></span>
-        </button>
+						</button>
+					</div>
 
-      <!-- Language select button-->
-      <div class="lead">
-        <select name="Select language" id="langSel" class="language box custom-select sources" onchange="setLangAndRedisplayPage()" disabled>
-          <!-- now being generated in script! -->
-        </select>
-      </div>
-
-      </div>
-
-    </nav>
-    </div><!--container-->
-    </div><!--program-header-->
-    <!-- mobile search button -->
-    <button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-md-none" data-toggle="collapse" data-target="#searchbar-collapse-mobile" aria-expanded="false" aria-label="Toggle Search">
+    				<!-- Language select button-->
+    				<div class="lead">
+    					<select name="Select language" id="langSel" class="language box custom-select sources" onchange="setLangAndRedisplayPage()" disabled>
+    					  <!-- now being generated in script! -->
+    					</select>
+    				</div>
+				</nav>
+			</div><!--container-->
+		</div><!--program-header-->
+		<!-- mobile search button -->
+		<button type="button" class="custom-toggler site-navbar-toggler site-searchbar-toggle d-md-none" data-toggle="collapse" data-target="#searchbar-collapse-mobile" aria-expanded="false" aria-label="Toggle Search">
     <span class="fa fa-search" aria-hidden="true"></span>
-    </button>   
-    <!-- Start collapsible site search bar -->
-    <div class="site-search-bar">
-    <div class="container">
-    <div class="row">
-      <div class="col">
-        <nav class="navbar navbar-light">
-          <div class="navbar-collapse collapse" id="searchbar-collapse">
-            <form
-                method="get"
-                class="site-searchbar-form form-inline ThunderstoneForm"
-                action="https://search4.nrel.gov/texis/search/" 
-                id="ThunderstoneSearchForm">
-
-              <input type="hidden" name="pr" value="metanrel" />
-              <div class="form-group">
-                  <label for="query" class="SearchFiler sr-only">NREL.gov</label>
-                  <input
-                      type="search"
-                      id="query" name="query"
-                      maxlength="2047"
-                      placeholder="NREL.gov"
-                      class="form-control"
-                      aria-label="NREL.gov">
-                  <button type="submit" class="Search btn btn-default">Search</button>
-              </div>
-            </form>
-          </div>
-        </nav>
-      </div>
-    </div>
-    </div>
-    </div>  
-    
-    <!-- End collapsible site search bar -->
-    <!--startindex-->
+		</button>   
+		<!-- Start Desktop collapsible site search bar -->
+        <div class="site-search-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <nav class="navbar navbar-light" aria-label="Site search">
+                            <div class="navbar-collapse collapse" id="searchbar-collapse">
+                                <form
+                                      method="get"
+                                      class="site-searchbar-form form-inline"
+                                      action="/search" 
+                                      id="site-search-form">
+                                    <div class="form-group">
+                                        <label for="query" class="sr-only">Search</label>
+                                        <input
+                                               type="search"
+                                               id="query" name="query"
+                                               maxlength="2047"
+                                               placeholder="Search"
+                                               class="form-control">
+                                        <button type="submit" class="btn btn-default">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!-- End Desktop collapsible site search bar -->
+		<!--startindex-->
 
 		<div class="container" id="content" role="main">
          <div class="row">
@@ -423,98 +422,109 @@
                   <p class="header">K. Shankari</p>
                   <p data-i18n="contactTitle" class="header-description">Postdoctoral Researcher, Director's Fellow</p><a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a><br><a href="tel:+1-303-384-6450"><span class="fa fa-phone-square" aria-hidden="true"></span>303-384-6450</a></div>
                
-            </div>
-				</nav>
- 			</div><!--container-->
- 		</div><!--program-header-->
+                    <!-- SHARETHIS WIDGET (OPTIONAL) -->
+					<!--stopindex-->
+						<div id="page-tools" class="hidden-print">
+							<!-- ShareThis BEGIN -->
+							<div class="mt-5 text-center">
+								<p class="mb-2">Share</p>
+								<span class="st-custom-button fa fa-facebook-square mr-3" data-network="facebook" aria-hidden="true" aria-label="Share on Facebook"></span>
+								<span class="st-custom-button fa fa-linkedin-square mr-3" data-network="linkedin" aria-hidden="true" aria-label="Share on Linked In"></span>
+								<span class="st-custom-button fa-brands fa-x-twitter mr-3" data-network="twitter" aria-hidden="true" aria-label="Share on Twitter"></span>
+								<!-- CUSTOM THREADS BUTTON -->
+								<span class="custom-share-button mr-3">
+									<a id="thispage">
+										<img src="client/img/threads.svg" alt="Share on Threads" aria-hidden="true" aria-label="Share on Threads" class="mb-1">
+									</a>
+								</span>
+								<!-- END CUSTOM THREADS BUTTON -->
+								<span class="st-custom-button fa fa-envelope mr-3" data-network="email" aria-hidden="true" aria-label="Share by email"></span>
+								<span class="st-custom-button fas fa-share-alt" data-network="sharethis" aria-hidden="true" aria-label="More share options"></span>
+							</div>
+							<!-- ShareThis END -->
+						</div>
+					<!--startindex-->   
+					<!-- LAST UPDATED (OPTIONAL) -->
+					<p class="caption text-center">Last Updated Jan. 00, 0000</p> 
+				</div>
+			</div>
+		</div>
 
- 		<!-- == APPLICATION FOOTER | updated 3/2021 == -->
- 		<!--stopindex-->
-    <footer id="footer" class="hidden-print">
+		<!-- == APPLICATION FOOTER == -->
+		<!--stopindex-->
+        <footer id="footer" class="hidden-print">
 
-      <div class="footertop">
-           <div class="container">
-              <div class="row">
-                  <div class="col-12 col-lg-5">
-                      <a href="http://www.nrel.gov/index.html"><strong class="nrel">National Renewable Energy Laboratory</strong></a>
-                  </div>
-                  <div class="col col-lg-7">
-                      <div class="d-flex flex-column flex-lg-row justify-content-lg-start global">
-                          <div><a data-i18n="about" href="http://www.nrel.gov/about/index.html">About</a></div>
-                          <div><a data-i18n="research" href="http://www.nrel.gov/research/index.html">Research</a></div>
-                          <div><a data-i18n="workWithUs" href="http://www.nrel.gov/index.html">Work with Us</a></div>
-                          <div><a data-i18n="news" href="http://www.nrel.gov/news/index.html">News</a></div>
-                          <div><a data-i18n="careers" href="http://www.nrel.gov/careers/index.html">Careers</a></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="footerbottom">
-           <div class="container">
-               <div class="row">
-                  <div class="col-md-4 col-lg-5">
-                      <div><a data-i18n="contactUs" href="http://www.nrel.gov/webmaster.html">Contact Us</a></div>
-                      <div class="mt-2"><a data-i18n="visit" href="http://www.nrel.gov/about/visiting-nrel.html">Visit</a></div>
-                      <div class="mt-2"><a data-i18n="subscribe" href="http://www.nrel.gov/news/subscribe.html">Subscribe</a></div>
-                      <div class="mt-3">
-                          <ul class="social-links list-inline">
-                              <li class="list-inline-item"><a href="https://www.facebook.com/nationalrenewableenergylab" aria-label="Follow NREL on Facebook"><i class="fa fa-facebook-square"><!--facebook--></i></a>
-                              </li>
-                              <li class="list-inline-item"><a href="https://www.instagram.com/nationalrenewableenergylab/" aria-label="Follow NREL on Instagram"><i class="fa fa-instagram"><!--Instagram--></i></a></li>
-                              <li class="list-inline-item"><a href="https://www.linkedin.com/company/national-renewable-energy-laboratory"
-                                  aria-label="Follow NREL on Linked In"><i class="fa fa-linkedin-square"><!--Linked In--></i></a>
-                              </li>
-                              <li class="list-inline-item"><a href="https://www.youtube.com/user/NRELPR/" aria-label="Follow NREL on YouTube"><i class="fa fa-youtube"><!--You Tube--></i></a>
-                              </li>
-                              <li class="list-inline-item"><a href="https://twitter.com/nrel/" aria-label="Follow NREL on Twitter"><i class="fa fa-twitter"><!--twitter--></i></a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-md-8 col-lg-7 globalsecondary">
-                      <div class="row">
-                          <div class="col-sm-6 col-lg-3">
-                              <div class="mt-1"><a data-i18n="accessibility" href="http://www.nrel.gov/accessibility.html">Accessibility</a></div>
-                              <div class="mt-1"><a data-i18n="disclaimer" href="http://www.nrel.gov/disclaimer.html">Disclaimer</a></div>
-                              <div class="mt-1"><a data-i18n="snp" href="http://www.nrel.gov/security.html">Security and Privacy</a></div>
-                              <div class="mt-1"><a data-i18n="siteFeedback" href="http://www.nrel.gov/webmaster.html">Site Feedback</a></div>
-                          </div>
-                          <div class="col-sm-6 col-lg-3">
-            
-                              <div class="mt-1"><a data-i18n="developers" href="https://developer.nrel.gov/">Developers</a></div>
-                              <div class="mt-1"><a data-i18n="employees" href="https://thesource.nrel.gov/">Employees</a></div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-               <hr />
-               <div class="mt-4">
-               <div class="row">
-                   <div class="col-sm-5">
-                       <a href="https://www.allianceforsustainableenergy.org/"><img class="mr-5 mb-3" src="client/img/alliance-logo_black.png" alt="Alliance for Sustainable Energy, LLC"></a>
-                       <a href="https://www.energy.gov"><img src="client/img/logo-doe-footer.png" alt="U.S. Department of Energy" class="mb-3"></a>
-                   </div>
+            <nav class="footertop" aria-label="Main">
+                 <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <a href="https://www.nlr.gov"><strong>National Laboratory of the Rockies</strong></a>
+                        </div>
+                        <div class="col col-lg-7">
+                            <div class="d-flex flex-column flex-lg-row justify-content-lg-start global">
+                                <div><a href="https://www.nlr.gov/about">About</a></div>
+                                <div><a href="https://www.nlr.gov/research">Research</a></div>
+                                <div><a href="https://www.nlr.gov/workingwithus">Partner With Us</a></div>
+                                <div><a href="https://www.nlr.gov/news">News</a></div>
+                                <div><a href="https://www.nlr.gov/careers">Careers</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <nav class="footerbottom"  aria-label="Secondary">
+                 <div class="container">
+                     <div class="row">
+                        <div class="col-md-4 col-lg-5">
+                            <div><a href="https://www.nlr.gov/webmaster">Contact Us</a></div>
+                            <div class="mt-2"><a href="https://www.nlr.gov/about/visiting-nrel">Visit</a></div>
+                            <div class="mt-2"><a href="https://www.nlr.gov/news/subscribe">Subscribe to NLR</a></div>
+                            <div class="mt-3">
+                                <ul class="social-links list-inline">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/nationallaboratoryoftherockies" aria-label="Follow NLR on Facebook"><i class="fa fa-facebook-square"><!--facebook--></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/nationalrenewableenergylab/" aria-label="Follow NLR on Instagram"><i class="fa fa-instagram"><!--Instagram--></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.linkedin.com/company/national-lab-of-the-rockies/"
+                                    aria-label="Follow NLR on Linked In"><i class="fa fa-linkedin-square"><!--Linked In--></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.youtube.com/@nationallaboratoryoftherockies" aria-label="Follow NLR on YouTube"><i class="fa fa-youtube"><!--You Tube--></i></a></li>
+                                    <li class="list-inline-item"><a href="https://x.com/NatLabRockies" aria-label="Follow NLR on X"><i class="fa-brands fa-x-twitter"><!--twitter--></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.threads.net/@nationalrenewableenergylab" aria-label="Follow NLR on Threads"><span class="fa-brands fa-threads"><!-- Threads --></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-lg-7 globalsecondary">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="mt-0"><a href="https://www.nlr.gov/accessibility">Accessibility</a></div>
+                                    <div class="mt-3 mt-sm-2"><a href="https://www.nlr.gov/disclaimer">Disclaimer</a></div>
+                                    <div class="mt-3 mt-sm-2"><a href="https://www.nlr.gov/security">Security and Privacy</a></div>
+                                    <div class="mt-3 mt-sm-2"><a href="https://www.nlr.gov/webmaster">Site Feedback</a></div>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+									
+                                    <div class="mt-3 mt-sm-0"><a href="https://developer.nrel.gov/">Developers</a></div>
+                                    <div class="mt-3 mt-sm-2"><a href="https://thesource.nrel.gov/">Employees</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <hr>
+                     <div class="mt-4">
+                     <div class="row">
+                        <div class="col-sm-5">
+                             <a href="https://www.alliance-for-energy-innovation.org/"><img src="client/img/alliance-for-energy-innovation-fy26-logo-black.svg" alt="Alliance for Energy Innovation, LLC" class="mb-3" width="auto" height="53" style="width:145px;height:53px;"></a>
+                             <a href="https://www.energy.gov"><img src="client/img/2025-doe-logo-stacked-horizontal.svg" alt="U.S. Department of Energy" class="ml-3" width="203" height="50" style="width:203px;height:50px;"></a>
+                         </div>
+                         <div class="col-12 col-sm-7">
+                              <p class="nrel-attr">The National Laboratory of the Rockies is a national laboratory of the U.S. Department of Energy, Office of Critical Minerals and Energy Innovation, operated under Contract No. DE-AC36-08GO28308.</p>
+                        </div>
+                    </div>
+                     </div>
+                </div>
+            </nav>
 
-                   <div class="col-12 col-sm-7">
-                    <p class="nrel-attr" style="display:inline;">
-                      <span data-i18n="ft1">The National Renewable Energy Laboratory is a national laboratory of the </span>
-                      <a data-i18n="usde" href="https://www.energy.gov/">U.S. Department of Energy</a>,
-                      <a data-i18n="oeere" href="https://www.energy.gov/eere/office-energy-efficiency-renewable-energy">Office of Energy Efficiency and Renewable Energy</a>
-                      <span data-i18n="ft2">, operated by the </span>
-                      <a data-i18n="ase" href="https://www.allianceforsustainableenergy.org/">Alliance for Sustainable Energy LLC</a>.
-                    </p>
+        </footer>
 
-                    
-                  </div>
-              </div>
-               </div>
-          </div>
-      </div>
-
-  </footer>
-
-    <!--startindex-->
+		<!--startindex-->
 		<!-- == END APPLICATION FOOTER == -->
 
 		<!-- == GLOBAL APPLICATION SCRIPTS == -->
@@ -526,7 +536,6 @@
 
 		<!-- Site application scripts -->
 		<script src="client/js/plugins.min.js"></script>
-		<script src="client/js/app.min.js"></script>
 
 		<!-- Custom scripts -->
 		<script type="text/javascript">
@@ -865,5 +874,6 @@
 
 		</script>
 
-	</body>
+	
+</body>
 </html>
