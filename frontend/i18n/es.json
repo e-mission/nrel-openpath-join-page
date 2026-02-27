@@ -28,7 +28,6 @@
 	"iN5":"Realiza un seguimiento de tus viajes, etiquétalos cuando se te solicite y comprueba tu huella de carbono.",
 	"iN6":"Para obtener información adicional, consulte las ",
 	"iN7":"instrucciones para los participantes",
-	"addInfo":"Para más información, consulta las ",
 	"joinStudy": "Únete al Estudio",
   "join": "Unirse",
   "joinAutogenQrDesc": "Después de haber instalado la aplicación NREL OpenPATH en su teléfono, únase al estudio escaneando el código QR o copiando el enlace y pegándolo en la aplicación.",
@@ -74,10 +73,7 @@
 	"tokenPrivacyInfoStudyText":"Iniciará sesión con un token generado por la plataforma. Solo tú conoces tu token. Dado que no recopilamos el correo electrónico ni el número de teléfono, no existe la función \"olvidé mi contraseña\". El personal de NREL no puede identificar su cuenta ni restaurar sus datos sin su token. Guarda tu token en caso de que cambies de teléfono.",
 	"tokenPrivacyInfoProgramText":"Se le ha proporcionado un token por $1 para iniciar sesión en la aplicación. Guarda tu código en un lugar seguro por si necesitas restablecer tu teléfono o cambiar de teléfono. Si has perdido tu token, ponte en contacto con tu administrador en $1 para asistencia.",
     "invalidStudyTitle": "Estudio Inválido",
-    "pageLoadError": "Error al cargar elementos de la página",
     "tokenCreationError": "Error al crear token de 'opcode'",
     "contactForAssistance": "Póngase en contacto con $1 para obtener ayuda",
-    "invalidSubgroupError": "Subgrupo $1 no encontrado en la lista $2",
-    "errorCopyingToClipboard": "Error al copiar al portapapeles",
-    "errorLoadingPageElements": "Error al cargar elementos de la página"
+	"errorCopyingToClipboard": "Error al copiar al portapapeles"
 }
