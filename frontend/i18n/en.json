@@ -10,6 +10,9 @@
 	},
 
 	"language_name": "English",
+	"skipToMainContent": "Skip to main content",
+	"menu": "Menu",
+	"share": "Share",
 	"joinPage":"Join Page",
 	"search":"Search",
 	"publicDashboard":"Public Dashboard",
