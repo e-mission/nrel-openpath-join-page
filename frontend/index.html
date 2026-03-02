@@ -102,7 +102,7 @@
 
 		<!-- Site application banner -->
 		<!--stopindex-->
-		<a href="#content" class="sr-only app">Skip to main content</a>
+    <a href="#content" class="sr-only app" data-i18n="skipToMainContent">Skip to main content</a>
 
 		<header id="banner">
 			<div class="banner-logo">
@@ -148,7 +148,7 @@
 
         <div class="d-flex align-items-center col-md-6 col-xl-8 order-md-1">
           <a class="app-name d-flex flex-wrap my-2">
-            <span id="pageTitle" class="app-name">NREL OpenPATH</span>
+            <span id="pageTitle" class="app-name">NLR OpenPATH</span>
             <span class="app-name">:&nbsp;</span>
             <span data-i18n="joinPage" class="app-name">Join Page</span>
           </a>
@@ -170,7 +170,7 @@
 					<div id="program-menu" class="mr-auto">
 						<button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#topnav-collapse" aria-controls="topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
-							<span class="navbar-toggle-label">Menu</span>
+              <span class="navbar-toggle-label" data-i18n="menu">Menu</span>
 						</button>
 					</div>
 
@@ -178,8 +178,8 @@
 					<div class="navbar-collapse collapse" id="topnav-collapse">
 						<ul class="nav navbar-nav">
           <li data-topnav="Public Dashboard" class="nav-item"><a id="publicDashboardLink" href="should_be_the_public_dashboard_link" data-i18n="publicDashboard" class="nav-link">Public Dashboard</a></li>
-          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html" data-i18n="participantGuidelines" class="nav-link">Participant Guidelines</a></li>
-          <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html" data-i18n="tsdc" class="nav-link">TSDC</a></li>
+          <li data-topnav="Participant Guidelines" class="nav-item"><a id="participantGuidelinesLink" href="https://www.nlr.gov/transportation/openpath-participant-guidelines.html" data-i18n="participantGuidelines" class="nav-link">Participant Guidelines</a></li>
+          <li data-topnav="TSDC" class="nav-item"><a id="TSDCLink" href="https://www.nlr.gov/transportation/secure-transportation-data/index.html" data-i18n="tsdc" class="nav-link">TSDC</a></li>
 						</ul>
 						<ul class="nav navbar-nav ml-auto">
           <!--Navigation tabs are commented out for reference
@@ -259,7 +259,7 @@
                
                <p style="display:inline;">
                 <span data-i18n="dC1">We use the </span>
-                <a href="https://www.nrel.gov/transportation/openpath.html">NREL OpenPATH</a> 
+                <a href="https://www.nlr.gov/transportation/openpath.html">NLR OpenPATH</a> 
                 <span data-i18n="dC2"> platform for this data collection. This open-source platform collects a complete snapshot 
                   of your travel and uses it to estimate yourindividual transportation carbon 
                   footprint and compare it against US 2030 and 2050 carbon-reduction goals. It also computes and 
@@ -276,12 +276,12 @@
                </div>
                <p id="whyWeCollect"></p>
                
-               <h2 data-i18n="installNREL">Install the NREL OpenPATH App on Your Phone</h2>
+               <h2 data-i18n="installNREL">Install the NLR OpenPATH App on Your Phone</h2>
                
                <ol>
                   <li>
                     <p style="display:inline;">
-                      <span data-i18n="iN1">Download the NREL OpenPATH app from the</span>
+                      <span data-i18n="iN1">Download the NLR OpenPATH app from the</span>
                       <a href="https://apps.apple.com/us/app/nrel-openpath/id1628058068">Apple Store</a>
                       <span data-i18n="iN2"> or </span>
                       <a href="https://play.google.com/store/apps/details?id=gov.nrel.cims.openpath">Google Play Store</a>
@@ -303,7 +303,7 @@
                </ol>
                <p>
                 <span data-i18n="iN6">For additional information, see the </span>
-                <a data-i18n="iN7" href="https://www.nrel.gov/transportation/openpath-participant-guidelines.html">
+                <a data-i18n="iN7" href="https://www.nlr.gov/transportation/openpath-participant-guidelines.html">
                   participant guidelines
                 </a><span>.</span>
               </p>
@@ -315,14 +315,14 @@
                   <div class="d-flex flex-column justify-content-center py-2">
                     <div id="joinQrRow" class="justify-content-center">
                       <p data-i18n="joinAutogenQrDesc">
-                        After you have installed the NREL OpenPATH app on your phone, join the study by
+                        After you have installed the NLR OpenPATH app on your phone, join the study by
                         scanning the QR code or copying the link and pasting it into the app.
                       </p>
                       <div id="joinQrCode" class="m-auto" style="width:150px; height:150px"></div>
                     </div>
                     <div id="joinButtonRow" class="justify-content-center">
                       <p data-i18n="joinAutogenButtonDesc">
-                        After you have installed the NREL OpenPATH app on your phone, join the study
+                        After you have installed the NLR OpenPATH app on your phone, join the study
                         by clicking the button below or copying the link and pasting it into the app.
                       </p>
                       <button id="joinButton" class="btn btn-primary">
@@ -339,7 +339,7 @@
                   <p data-i18n="[html]joinAutogenOpcodeDesc" class="m-0">
                     When you join the study, you will be randomly assigned an OPcode, which is a
                     long string beginning with <code>nrelop_</code>. You will be asked to save your
-                    OPcode in case you lose or change phones. If you lose your token, NREL cannot
+                    OPcode in case you lose or change phones. If you lose your token, NLR cannot
                     retrieve it for you since we do not have the ability to match a token to an
                     individual user.
                   </p>
@@ -350,7 +350,7 @@
                   <h2 data-i18n="joinStudy">Join the Study</h2>
 
                   <p data-i18n="[html]joinAssignedQrDesc">
-                    After you have installed the NREL OpenPATH app on your phone, join the program
+                    After you have installed the NLR OpenPATH app on your phone, join the program
                     by scanning the QR code or copy-pasting the OPcode provided by your program admin.
                     The OPcode is a long string beginning with <code>nrelop_</code>
                   </p>
@@ -366,7 +366,7 @@
                   <p data-i18n="joinAssignedOpcodeDesc">
                     The OPcode is a randomly generated token. Keep your OPcode in a safe place in
                     case you lose or change phones. If you lose your OPcode, please contact your
-                    program admin for assistance. NREL cannot retrieve it for you since we do not
+                    program admin for assistance. NLR cannot retrieve it for you since we do not
                     have the ability to match a token to an individual user.
                   </p>
                </div>
@@ -391,9 +391,9 @@
 
                <p id="tokenPrivacyInfo"></p>
                
-               <p data-i18n="dP4">The collected data will be stored in a FEDRAMP-certified medium cluster at NREL and
+               <p data-i18n="dP4">The collected data will be stored in a FEDRAMP-certified medium cluster at NLR and
                   encrypted both in transit and at rest. Data from this study will be stored separately
-                  from other study data using the NREL-hosted version of the OpenPATH platform.
+                  from other study data using the NLR-hosted version of the OpenPATH platform.
                </p>
                
                <p data-i18n="dP5">The raw data from this study will only be made available to:</p>
@@ -410,13 +410,13 @@
                     </p>
                   </li>
                   
-                  <li data-i18n="dP9">NREL OpenPATH developers for debugging.</li>
+                  <li data-i18n="dP9">NLR OpenPATH developers for debugging.</li>
 
                </ul>
                
                <p style="display:inline;">
-                <span data-i18n="dP10">On completion of the study, the data will be archived in NREL's </span>
-                <a data-i18n="dP13" href="https://www.nrel.gov/transportation/secure-transportation-data/index.html">Transportation Secure Data Center</a>
+                <span data-i18n="dP10">On completion of the study, the data will be archived in NLR's </span>
+                <a data-i18n="dP13" href="https://www.nlr.gov/transportation/secure-transportation-data/index.html">Transportation Secure Data Center</a>
                 <span data-i18n="dP11"> to support travel behavior research.</span>
                 </p>
 
@@ -429,15 +429,15 @@
                <h2 data-i18n="contact">Contact</h2>
                
                <div class="bio">
-                  <p class="header">K. Shankari</p>
-                  <p data-i18n="contactTitle" class="header-description">Postdoctoral Researcher, Director's Fellow</p><a href="mailto:K.Shankari@nrel.gov"><span class="fa fa-envelope" aria-hidden="true"></span>K.Shankari@nrel.gov</a><br><a href="tel:+1-303-384-6450"><span class="fa fa-phone-square" aria-hidden="true"></span>303-384-6450</a></div>
+                  <p class="header">The OpenPATH Team</p>
+                  <p data-i18n="contactTitle" class="header-description">(K. Shankari and Jack Greenlee)</p><a href="mailto:openpath@nlr.gov"><span class="fa fa-envelope" aria-hidden="true"></span>openpath@nlr.gov</a><br></div>
                
                     <!-- SHARETHIS WIDGET (OPTIONAL) -->
 					<!--stopindex-->
 						<div id="page-tools" class="hidden-print">
 							<!-- ShareThis BEGIN -->
-							<div class="mt-5 text-center">
-								<p class="mb-2">Share</p>
+              <div class="mt-5 text-center">
+                <p class="mb-2" data-i18n="share">Share</p>
 								<span class="st-custom-button fa fa-facebook-square mr-3" data-network="facebook" aria-hidden="true" aria-label="Share on Facebook"></span>
 								<span class="st-custom-button fa fa-linkedin-square mr-3" data-network="linkedin" aria-hidden="true" aria-label="Share on Linked In"></span>
 								<span class="st-custom-button fa-brands fa-x-twitter mr-3" data-network="twitter" aria-hidden="true" aria-label="Share on Twitter"></span>
@@ -553,9 +553,9 @@
        *           - the first part of the hostname before '-openpath' if present,
        *           - 'stage' if the first part of the hostname is 'openpath-stage',
        *           - undefined if it can't be determined
-       * @example getStudyNameFromUrl(new URL('https://openpath-stage.nrel.gov/join/')) => 'stage'
-       * @example getStudyNameFromUrl(new URL('https://open-access-openpath.nrel.gov/join/')) => 'open-access'
-       * @example getStudyNameFromUrl(new URL('https://nrel-commute-openpath.nrel.gov/api/')) => 'nrel-commute'
+       * @example getStudyNameFromUrl(new URL('https://openpath-stage.nlr.gov/join/')) => 'stage'
+       * @example getStudyNameFromUrl(new URL('https://open-access-openpath.nlr.gov/join/')) => 'open-access'
+       * @example getStudyNameFromUrl(new URL('https://nrel-commute-openpath.nlr.gov/api/')) => 'nrel-commute'
        * @example getStudyNameFromUrl(new URL('http://localhost:3274/?study_config=foo')) => 'foo'
        */
       function getStudyNameFromUrl(url) {
@@ -802,7 +802,7 @@
       $(document).ready(async function() {
         PAGE_URL = new URL(window.location);
         STUDY_NAME = getStudyNameFromUrl(PAGE_URL) || 'stage-program';
-        const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
+        const CONFIG_URL = `https://raw.githubusercontent.com/e-mission/op-deployment-configs/main/configs/${STUDY_NAME}.nrel-op.json`;
         // set the initial value to the current language
         // otherwise, if the dropdown is set to es and we reload the page, the
         // text changes to en, but the dropdown stays as es
