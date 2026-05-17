@@ -17,13 +17,21 @@ jobs:
     steps:
 
     - uses: actions/checkout@v2
+
+    - name: Set docker image tags
+      id: set-tags
+      run: |
+        set -a; source .env; set +a
+        echo "JOIN_IMAGE_TAG=${JOIN_IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+        echo "Current join-page image tag (push): ${JOIN_IMAGE_TAG}"
+
     - name: docker login
       run: | # log into docker hub account
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - name: Get current date # get the date of the build
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+      run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_OUTPUT"
 
     - name: Run a one-line script
       run: echo running in repo ${GITHUB_REPOSITORY#*/} branch ${GITHUB_REF##*/} on ${{ steps.date.outputs.date }}
@@ -37,14 +45,18 @@ jobs:
       run: |
         docker push $DOCKER_USER/${GITHUB_REPOSITORY#*/}:${GITHUB_REF##*/}_${{ steps.date.outputs.date }}
 
-    - name: Create artifact text file
+    - name: Update .env file 
       run: |
-          echo ${{ steps.date.outputs.date }} > join_page_tag_file.txt
-          echo "Created tag text file"
+        echo "JOIN_IMAGE_TAG=${GITHUB_REF##*/}_${{ steps.date.outputs.date }}" > .env
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-          name: join-page-image-tag
-          path: join_page_tag_file.txt
-          overwrite: true
+    - name: Add, Commit, Push changes to .env file
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Github Actions bot to update .env with latest tags"
+        if git diff --quiet; then
+          echo "Latest timestamp already present in .env file, no changes to commit"
+        else
+          git add .env
+          git commit -m "Updated docker image tags in .env file to the latest timestamp"
+          git push origin 
+        fi
