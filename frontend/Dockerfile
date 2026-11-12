@@ -1,4 +1,5 @@
 FROM node:26.8.1-alpine3.24
+LABEL org.opencontainers.image.source=https://github.com/e-mission/nrel-openpath-join-page
 
 RUN mkdir -p /public
 WORKDIR /public
