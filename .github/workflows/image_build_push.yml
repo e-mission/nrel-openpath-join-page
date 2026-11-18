@@ -4,27 +4,38 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
-  get-branch-name:
-    runs-on: ubuntu-latest
-    outputs:
-      branch_name: ${{ steps.get-branch-name.outputs.branch_name }}
-    steps:
-      - name: Get branch name based on ref_type
-        id: get-branch-name
-        run: |
-          if [ "${{ github.ref_type }}" == "tag" ]; then
-            target_branch=${{ github.event.release.target_commitish }}
-            echo "branch_name=${target_branch}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.ref_type }}" == "branch" ]; then
-            echo "branch_name=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"    
-          fi
+  test:
+    uses: ./.github/workflows/test.yml
 
   build:
-    if: ${{ !contains(github.event.release.body, 'Triggered on e-mission-server new release. Bumping up release version.') }}
-    needs: [get-branch-name]
-    uses: e-mission/e-mission-server/.github/workflows/reusable_image_build_push.yml@master
-    with:
-      repo: ${{ github.event.repository.name }}
-      branch: ${{ needs.get-branch-name.outputs.branch_name }}
-    secrets: inherit
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push join page image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./frontend
+        platforms: linux/amd64,linux/arm64/v8
+        push: true
+        tags: ghcr.io/e-mission/nrel-openpath-join-page:${{ github.event.release.tag_name }}
