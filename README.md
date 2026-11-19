@@ -1,5 +1,7 @@
 # A generic join page for NREL OpenPATH studies and programs
 
+[![Join page smoke test on pushes to main](https://github.com/e-mission/nrel-openpath-join-page/actions/workflows/test.yml/badge.svg?branch=main&event=push)](https://github.com/e-mission/nrel-openpath-join-page/actions/workflows/test.yml?query=branch%3Amain+event%3Apush)
+
 **Issues:** Since this repository is part of a larger project, all issues are tracked in the central docs repository (https://github.com/e-mission). If you have a question, as suggested by the open source guide, please file an issue instead of sending an email. Since issues are public, other contributors can try to answer the question and benefit from the answer.
 
 ## Development
