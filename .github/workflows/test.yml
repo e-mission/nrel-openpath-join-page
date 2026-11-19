@@ -1,0 +1,36 @@
+name: test-join-page
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '5 4 * * 0'
+  workflow_call:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build join page image
+      run: |
+        image="join-page-smoke-test:${GITHUB_RUN_ID}-$$"
+        echo "image=$image" >> "$GITHUB_ENV"
+        docker build --tag "$image" ./frontend
+
+    - name: Smoke test join page
+      run: |
+        container_id=$(docker run --detach --rm --publish 127.0.0.1::5050 "$image")
+        trap 'docker stop "$container_id" >/dev/null 2>&1 || true' EXIT
+        port=$(docker port "$container_id" 5050/tcp | sed 's/.*://')
+        for attempt in $(seq 1 30); do
+          if curl --fail --silent "http://127.0.0.1:$port/" > /tmp/join-page-index.html; then
+            break
+          fi
+          sleep 1
+        done
+        test -s /tmp/join-page-index.html
+        grep -qi '<html' /tmp/join-page-index.html
